@@ -1,0 +1,452 @@
+#scrollToTopButton{
+    position: fixed;
+    bottom: 15px;
+    right: 10px;
+    font-size: 25px;
+    z-index: 99;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 6px;
+    border-radius: 50%;
+    box-shadow: 0 6px 10px 0px gray;
+    }
+    
+    .goog-logo-link {
+      display: none !important;
+    }
+    
+    .goog-te-gadget {
+      color: transparent !important;
+    }
+    
+   
+    
+
+    
+    /*home.css*/
+    .demo input [type=text]{
+        border: 1px solid gray;
+        background-color: whitesmoke;
+        padding: 0 5px;
+        width: 20vw;
+    }
+      
+    .demo input[type=text]::placeholder{
+        color: gray;
+        font-size: 0.8rem;
+    }
+      
+    .demo input[type=date]{
+        background-color: #95E1D3; 
+        border: 0px solid;
+        color: black; 
+        font-size: 0.9rem; 
+        width:fit-content !important; 
+    }
+      
+    .demo  input[type=file]{
+        background-color: whitesmoke;
+        border: 0px solid;
+        font-size: 0.8rem;
+    }
+    
+    /*classes*/
+    
+    .Formcontainer{
+        background-color:white;
+        border: 2px solid #D3FCFF;;
+        border-radius: 0;
+        font-family: 'Open Sans', sans-serif;
+        margin: 0 auto;
+        padding: 1px;
+        width: 80vw;
+        padding-bottom: 30px;
+    }
+    
+    .head1{
+        background-color: #F38181;
+    }
+          
+    button{
+        background-color: transparent;
+        border: 0px solid;
+        width: fit-content;
+    }
+          
+    .material-icons{
+        margin: auto;
+        padding: auto;
+        width: 20px;
+    }
+          
+    .close:hover{
+        color: red;
+    }
+          
+      
+    .conatinerFluid{
+        font-size: 0.9rem;
+    }
+          
+    .conatinerFluid div{
+        margin: 15px 0;
+    }
+          
+    .district span,
+    .state span{
+        display: inline-block;
+    }
+          
+    .descrip{
+            background-color:#D3FCFF;;
+            border-radius: 0;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 2vw;
+            text-align: justify;
+    }
+          
+    .formheading{
+            border-radius: 0;
+            background-color:#4E3B9C;  
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 2vw;
+          }
+          
+          .note{
+            background-color: white;
+          }
+          
+          .note h3{
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 20px 0;
+            display: inline-block;
+            font-size: 1rem;
+          }
+        
+          .part1,
+          .part2,
+          .part3,
+          .part4,
+          .part5,
+          .part6{
+            margin: 0;
+            padding: 0 2vw;
+            width: 100%;
+          }
+          
+          .part1 .state,
+          .part1 .district,
+          .part1 .legislative,
+          .part6 .state,
+          .part6 .district{
+            width: fit-content; 
+            font-size: 0.9rem; 
+            background-color: #95E1D3; 
+            color: black; 
+            border: 0px solid; 
+            margin-left: 0;
+          }
+          
+          .part2 button .material-icons,
+          .part3 button .material-icons{
+            width: fit-content;
+          }
+          
+          .part2 .longerspan{
+            width: 35vw;
+          }
+          
+          .part2 .gender{
+            width: fit-content; 
+            font-size: 0.9rem; 
+            background-color: #95E1D3; 
+            color: black; 
+            border: 0px solid; 
+            margin-left: 0;
+          }
+          
+          .part2 .relationship{
+            width: fit-content; 
+            font-size: 0.9rem; 
+            background-color: #95E1D3; 
+            color: black; 
+            border: 0px solid; 
+            margin-left: 0;
+          }
+          
+        .part2 .yearmonth{
+          margin-left: 0;
+        }
+      
+          .part2 .year,
+          .part2 .month{
+            display: inline-block;
+            width:fit-content; 
+            font-size: 0.9rem; 
+            background-color: #95E1D3; 
+            color: black; 
+            border: 0px solid;
+            margin-left: 0;
+          }
+          
+          .part2 .date
+          .part6 .date{
+            display: block; 
+            margin: 5px 0 0 15px;
+          }
+          
+          .part5 .image{
+            width:fit-content; 
+            font-size: 0.9rem; 
+            background-color: #95E1D3; 
+            color: black; 
+            border: 0px solid;
+            margin-left: 0;
+          }
+          
+          .part1 span,
+          .part2 span,
+          .part3 span,
+          .part4 span{
+            display: inline-block;
+            width: 20vw;
+          }
+          
+          .part5 span,
+          .part6 span{
+            display: inline-block;
+            width: 15vw;
+          }
+          
+          .part1 .longerspan,
+          .part4 .longerspan,
+          .part6 .longerspan{
+            width: fit-content;
+          }
+          
+          .part2 .breaksection,
+          .part5 .breaksection{
+            display: inline-block;
+            width: fit-content;
+          }
+          
+          .request{
+            text-align: justify;
+          }
+      
+          @media screen and (max-width:1181px) {
+            .part2 .longerspan{
+              width: 40vw;
+            }
+          }
+      
+          @media screen and (max-width:1031px) {
+            .part2 .longerspan{
+              width: 45vw;
+            }
+          }
+          
+          @media screen and (max-width:991px) {
+            .part4 span{
+              width: 25vw;
+            }
+          }
+      
+          @media screen and (max-width:921px) {
+            .part2 .longerspan{
+              width: fit-content;
+            }
+      
+            .part2 .yearmonth,
+            .part2 .date{
+              display: block;
+              margin: 5px 0 0 20px;
+            }
+          }
+          
+          @media screen and (max-width:901px) {
+            .part2 span,
+            .part3 span{
+              width: 70vw;
+            }
+          
+            .part2 .relationship,
+            .part2 .gender{
+              margin: 5px 0 0 20px;
+            }
+          
+            .part2 .date{
+              display: block;
+              margin: 5px 0 0 20px;
+            }
+          }
+          
+          @media screen and (max-width:841px) {
+            .part5 img{
+              height: 190px;
+              width: 190px;
+            }
+          }
+          
+          @media screen and (max-width:801px) {
+            .part1 span{
+              width: fit-content;
+              display: block;
+            }
+          
+            .part5 .eachimage{
+              display: block;
+              margin-bottom: 50px;
+            }
+          
+            .part5 .eachimage .breaksection{
+              display: block;
+            }
+          
+            .part5 img{
+              height: 180px;
+              width: 180px;
+            }
+          }
+          
+          @media screen and (max-width:791px) {
+            .part4 span{
+              width: 30vw;
+            }
+          }
+          
+          @media screen and (max-width:771px) {
+            .part5 img{
+              height: 150px;
+              width: 150px;
+            }
+          }
+          
+          @media screen and (max-width:701px) {
+            .part4 span{
+              width: 35vw;
+            }
+          
+            .part5 span{
+              width: 25vw;
+            }
+          }
+          
+          @media screen and (max-width:641px) {
+            .Formcontainer{
+              margin: 0;
+              width: 100vw;
+              max-width: fit-content;
+            }
+          
+            .part2 span,
+            .part3 span{
+              width: 90vw;
+            }
+          }
+          
+          @media screen and (max-width:571px) {
+            .part4 span{
+              width: 40vw;
+            }
+          }
+          
+          @media screen and (max-width:511px) {
+            .part4 span{
+              width: 45vw;
+            }
+          
+            .part5 img{
+              height: 130px;
+              width: 130px;
+            }
+          }
+          
+          @media screen and (max-width:481px) {
+            .descrip{
+              font-size: 0.8rem;
+            }
+          
+            .formheading{
+              font-size: 0.9rem;
+            }
+          
+            .conatinerFluid *{
+              font-size: 0.7rem;
+            }
+          
+            .part1 .state,
+            .part1 .district,
+            .part1 .legislative,
+            .part2 input[type=text],
+            .part2 input[type=text]::placeholder,
+            .part2 .relationship,
+            .part2 .year,
+            .part2 .month,
+            .part2 .date,
+            .part2 .gender,
+            .part3 input[type=text],
+            .part3 input[type=text]::placeholder,
+            .part4 input[type=text],
+            .part4 input[type=text]::placeholder,
+            .part5 input[type=file],
+            .part5 .image,
+            .part6 .state,
+            .part6 .district,
+            .part6 .date,
+            .part6 input[type=text],
+            .part6 input[type=text]::placeholder{
+              font-size: 0.7rem;
+            }
+          
+            input[type=text]{
+              width: 30vw;
+            }
+          
+            .part2 .longerspan{
+              width: fit-content;
+            }
+          
+          }
+        
+          @media screen and (max-width:451px) {
+            .part5 img{
+              height: 100px;
+              width: 100px;
+            }
+          }
+        
+        @media screen and (max-width:351px) {
+          .part5 span{
+            width: 25vw;
+          }
+        
+          .part5 img{
+            height: 90px;
+            width: 90px;
+          }
+        
+          .part6 span{
+            width: 70vw;
+          }
+        }
+        
+        @media screen and (max-width:321px) {
+          .part4 span{
+            width: 50vw;
+          }
+        
+          .part5 span{
+            width: 20vw;
+          }
+        }
