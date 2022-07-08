@@ -239,7 +239,7 @@ function Forget() {
               )}
 
               <p style={{ textAlign: "right" }}>
-                Back To Login? <a href="/">Login</a>
+                Back To Login? <a href="/login">Login</a>
               </p>
             </Form>
           </Col>

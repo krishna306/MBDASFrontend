@@ -15,13 +15,13 @@ function Home() {
     cssEase: "linear",
   };
   return (
-    <div>
+    <div style={{overflow:"hidden"}}>
       <Row style={{ marginLeft: "10%", width: "80%" }}>
         <Col className="text-center">
           <Carousel variant="dark">
             <Carousel.Item>
               <img
-                height="450px"
+                height="550px"
                 className="d-block w-100"
                 src="./Assets/Images/pic1.jpeg"
                 alt="First slide"
@@ -29,7 +29,7 @@ function Home() {
             </Carousel.Item>
             <Carousel.Item>
               <img
-                height="450px"
+                height="550px"
                 className="d-block w-100"
                 src="./Assets/Images/pic2.jpg"
                 alt="Second slide"
@@ -37,7 +37,7 @@ function Home() {
             </Carousel.Item>
             <Carousel.Item>
               <img
-                height="450px"
+                height="550px"
                 className="d-block w-100"
                 src="./Assets/Images/pic3.jpg"
                 alt="Third slide"

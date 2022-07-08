@@ -74,14 +74,14 @@ function DataTable(props) {
   };
 
   const columns = [
-    // {
-    //   dataField: "aadhar",
-    //   text: "Aadhaar",
-    //   filter: textFilter(),
-    //   headerStyle: () => {
-    //     return { paddingLeft: "10px", paddingRight: "10px" };
-    //   },
-    // },
+    {
+      dataField: "aadhar",
+      text: "Aadhaar",
+      filter: textFilter(),
+      headerStyle: () => {
+        return { paddingLeft: "10px", paddingRight: "10px" };
+      },
+    },
     {
       dataField: "date",
       text: "Date of Death",
@@ -96,10 +96,10 @@ function DataTable(props) {
           whiteSpace: "nowrap",
         };
       },
-      //   formatter: (cell, row) => (
-      //     <small>{cell && (new Date(cell)).toGMTString()}</small>
+        formatter: (cell, row) => (
+          <small>{cell && (new Date(cell)).toGMTString()}</small>
 
-      // ),
+      ),
       formatter: (cell) => {
         let dateObj = cell;
         if (typeof cell !== "object") {
@@ -114,22 +114,22 @@ function DataTable(props) {
         ).slice(-2)}/${dateObj.getFullYear()}`;
       },
     },
-    // {
-    //   dataField: "deadname",
-    //   text: "Name of Deceased",
-    //   sort: true,
-    //   filter: textFilter({
-    //     onFilter:filterVal => console.log(filterVal),
-    //     placeholder: "Enter Name",
-    //   }),
-    //   headerStyle: () => {
-    //     return {
-    //       paddingLeft: "25px",
-    //       paddingRight: "25px",
-    //       whiteSpace: "nowrap",
-    //     };
-    //   },
-    // },
+    {
+      dataField: "deadname",
+      text: "Name of Deceased",
+      sort: true,
+      filter: textFilter({
+        onFilter:filterVal => console.log(filterVal),
+        placeholder: "Enter Name",
+      }),
+      headerStyle: () => {
+        return {
+          paddingLeft: "25px",
+          paddingRight: "25px",
+          whiteSpace: "nowrap",
+        };
+      },
+    },
     {
       dataField: "gender",
       text: "Gender",
@@ -141,44 +141,44 @@ function DataTable(props) {
         return { paddingLeft: "25px", paddingRight: "25px" };
       },
     },
-    // {
-    //   dataField: "father",
-    //   text: "Father Name",
-    //   filter: textFilter({
-    //     placeholder: "Enter Name",
-    //   }),
-    //   headerStyle: () => {
-    //     return {
-    //       paddingLeft: "35px",
-    //       paddingRight: "35px",
-    //       whiteSpace: "nowrap",
-    //     };
-    //   },
-    // },
-    // {
-    //   dataField: "mother",
-    //   text: "Mother Name",
-    //   filter: textFilter({
-    //     placeholder: "Enter Name",
-    //   }),
-    //   headerStyle: () => {
-    //     return {
-    //       paddingLeft: "35px",
-    //       paddingRight: "35px",
-    //       whiteSpace: "nowrap",
-    //     };
-    //   },
-    // },
-    // {
-    //   dataField: "spouse",
-    //   text: "Spouse",
-    //   filter: textFilter({
-    //     placeholder: "Enter Name",
-    //   }),
-    //   headerStyle: () => {
-    //     return { paddingLeft: "25px", paddingRight: "25px" };
-    //   },
-    // },
+    {
+      dataField: "father",
+      text: "Father Name",
+      filter: textFilter({
+        placeholder: "Enter Name",
+      }),
+      headerStyle: () => {
+        return {
+          paddingLeft: "35px",
+          paddingRight: "35px",
+          whiteSpace: "nowrap",
+        };
+      },
+    },
+    {
+      dataField: "mother",
+      text: "Mother Name",
+      filter: textFilter({
+        placeholder: "Enter Name",
+      }),
+      headerStyle: () => {
+        return {
+          paddingLeft: "35px",
+          paddingRight: "35px",
+          whiteSpace: "nowrap",
+        };
+      },
+    },
+    {
+      dataField: "spouse",
+      text: "Spouse",
+      filter: textFilter({
+        placeholder: "Enter Name",
+      }),
+      headerStyle: () => {
+        return { paddingLeft: "25px", paddingRight: "25px" };
+      },
+    },
     {
       dataField: "age",
       text: "Age",
@@ -210,49 +210,49 @@ function DataTable(props) {
       formatter: (cell, row) => <small>{cell}</small>,
     },
 
-    // {
-    //   dataField: "addressAtDead",
-    //   text: "Address at the time of Death",
-    //   filter: textFilter({
-    //     placeholder: "Enter Address",
-    //   }),
-    //   headerStyle: () => {
-    //     return {
-    //       paddingLeft: "35px",
-    //       paddingRight: "35px",
-    //       whiteSpace: "nowrap",
-    //     };
-    //   },
-    //   formatter: (cell, row) => <small>{cell}</small>,
-    // },
-    // {
-    //   dataField: "informantName",
-    //   text: "Informant Name",
-    //   filter: textFilter({
-    //     placeholder: "Enter Name",
-    //   }),
-    //   headerStyle: () => {
-    //     return {
-    //       paddingLeft: "35px",
-    //       paddingRight: "35px",
-    //       whiteSpace: "nowrap",
-    //     };
-    //   },
-    // },
-    // {
-    //   dataField: "informantRelation",
-    //   text: "Informant Relation",
-    //   filter: textFilter({
-    //     placeholder: "Enter Relation",
-    //   }),
-    //   headerStyle: () => {
-    //     return {
-    //       paddingLeft: "25px",
-    //       paddingRight: "25px",
-    //       whiteSpace: "nowrap",
-    //     };
-    //   },
-    // },
+    {
+      dataField: "addressAtDead",
+      text: "Address at the time of Death",
+      filter: textFilter({
+        placeholder: "Enter Address",
+      }),
+      headerStyle: () => {
+        return {
+          paddingLeft: "35px",
+          paddingRight: "35px",
+          whiteSpace: "nowrap",
+        };
+      },
+      formatter: (cell, row) => <small>{cell}</small>,
+    },
+    {
+      dataField: "informantName",
+      text: "Informant Name",
+      filter: textFilter({
+        placeholder: "Enter Name",
+      }),
+      headerStyle: () => {
+        return {
+          paddingLeft: "35px",
+          paddingRight: "35px",
+          whiteSpace: "nowrap",
+        };
+      },
+    },
+    {
+      dataField: "informantRelation",
+      text: "Informant Relation",
+      filter: textFilter({
+        placeholder: "Enter Relation",
+      }),
+      headerStyle: () => {
+        return {
+          paddingLeft: "25px",
+          paddingRight: "25px",
+          whiteSpace: "nowrap",
+        };
+      },
+    },
     {
       dataField: "district",
       text: "District",
@@ -272,14 +272,14 @@ function DataTable(props) {
         return { paddingLeft: "25px", paddingRight: "25px" };
       },
     },
-    // {
-    //   dataField: "torvName",
-    //   text: "Town/Village Name",
-    //   filter: textFilter(),
-    //   headerStyle: () => {
-    //     return { paddingLeft: "25px", paddingRight: "25px" };
-    //   },
-    // },
+    {
+      dataField: "torvName",
+      text: "Town/Village Name",
+      filter: textFilter(),
+      headerStyle: () => {
+        return { paddingLeft: "25px", paddingRight: "25px" };
+      },
+    },
     {
       dataField: "deceasedstate",
       text: "State",
@@ -289,21 +289,21 @@ function DataTable(props) {
       },
     },
 
-    // {
-    //   dataField: "addressPermanent",
-    //   text: "Permanent Address",
-    //   filter: textFilter({
-    //     placeholder: "Enter Address",
-    //   }),
-    //   headerStyle: () => {
-    //     return {
-    //       paddingLeft: "35px",
-    //       paddingRight: "35px",
-    //       whiteSpace: "nowrap",
-    //     };
-    //   },
-    //   formatter: (cell, row) => <small>{cell}</small>,
-    // },
+    {
+      dataField: "addressPermanent",
+      text: "Permanent Address",
+      filter: textFilter({
+        placeholder: "Enter Address",
+      }),
+      headerStyle: () => {
+        return {
+          paddingLeft: "35px",
+          paddingRight: "35px",
+          whiteSpace: "nowrap",
+        };
+      },
+      formatter: (cell, row) => <small>{cell}</small>,
+    },
     {
       dataField: "religion",
       text: "Religion",
@@ -337,17 +337,17 @@ function DataTable(props) {
       formatter: (cell, row) => <small>{cell}</small>,
     },
 
-    // {
-    //   dataField: "medicallyCertified",
-    //   text: "Medically Certified",
-    //   formatter: (cell) => medicallyCertifiedoptions[cell],
-    //   filter: selectFilter({
-    //     options: medicallyCertifiedoptions,
-    //   }),
-    //   headerStyle: () => {
-    //     return { paddingLeft: "25px", paddingRight: "25px" };
-    //   },
-    // },
+    {
+      dataField: "medicallyCertified",
+      text: "Medically Certified",
+      formatter: (cell) => medicallyCertifiedoptions[cell],
+      filter: selectFilter({
+        options: medicallyCertifiedoptions,
+      }),
+      headerStyle: () => {
+        return { paddingLeft: "25px", paddingRight: "25px" };
+      },
+    },
 
     {
       dataField: "disease",
@@ -424,50 +424,50 @@ function DataTable(props) {
         return { paddingLeft: "25px", paddingRight: "25px" };
       },
     },
-    // {
-    //   dataField: "signature",
-    //   text: "Applicant Signature",
-    //   headerStyle: () => {
-    //     return { paddingLeft: "25px", paddingRight: "25px" };
-    //   },
-    //   formatter: (cell, row) => (
-    //     <small><a href={cell} target="_blank" rel="noopener noreferrer">View</a></small>
+    {
+      dataField: "signature",
+      text: "Applicant Signature",
+      headerStyle: () => {
+        return { paddingLeft: "25px", paddingRight: "25px" };
+      },
+      formatter: (cell, row) => (
+        <small><a href={cell} target="_blank" rel="noopener noreferrer">View</a></small>
 
-    // ),
-    // },
-    // {
-    //   dataField: "goanburahCertificate",
-    //   text: "Gaonburah Certificate",
-    //   headerStyle: () => {
-    //     return { paddingLeft: "25px", paddingRight: "25px" };
-    //   },
-    //   formatter: (cell, row) => (
-    //     <small><a href={cell} target="_blank" rel="noopener noreferrer">View</a></small>
+    ),
+    },
+    {
+      dataField: "goanburahCertificate",
+      text: "Gaonburah Certificate",
+      headerStyle: () => {
+        return { paddingLeft: "25px", paddingRight: "25px" };
+      },
+      formatter: (cell, row) => (
+        <small><a href={cell} target="_blank" rel="noopener noreferrer">View</a></small>
 
-    // ),
-    // },
-    // {
-    //   dataField: "otherDocuments",
-    //   text: "Other Document",
-    //   headerStyle: () => {
-    //     return { paddingLeft: "25px", paddingRight: "25px" };
-    //   },
-    //   formatter: (cell, row) => (
-    //     <small><a href={cell} target="_blank" rel="noopener noreferrer">View</a></small>
+    ),
+    },
+    {
+      dataField: "otherDocuments",
+      text: "Other Document",
+      headerStyle: () => {
+        return { paddingLeft: "25px", paddingRight: "25px" };
+      },
+      formatter: (cell, row) => (
+        <small><a href={cell} target="_blank" rel="noopener noreferrer">View</a></small>
 
-    // ),
-    // },
-    // {
-    //   dataField: "deathCertificate",
-    //   text: "Death Certificate",
-    //   headerStyle: () => {
-    //     return { paddingLeft: "25px", paddingRight: "25px" };
-    //   },
-    //   formatter: (cell, row) => (
-    //         <small><a href={cell} target="_blank" rel="noopener noreferrer">View</a></small>
+    ),
+    },
+    {
+      dataField: "deathCertificate",
+      text: "Death Certificate",
+      headerStyle: () => {
+        return { paddingLeft: "25px", paddingRight: "25px" };
+      },
+      formatter: (cell, row) => (
+            <small><a href={cell} target="_blank" rel="noopener noreferrer">View</a></small>
   
-    //     ),
-    // },
+        ),
+    },
   ];
   return (
     <BootstrapTable

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -67,6 +67,9 @@ function Login() {
       try {
         const res = await loginOtpUser({ mobile: obj.emailMobile.slice(3) });
         if(res.error){
+          setTimeout(()=> {
+            window.location.reload();
+          },1000)
           toast.error(res.error.data);
         }
         else {
@@ -121,6 +124,7 @@ function Login() {
   }
   return (
     <div>
+      
       <ToastContainer />
       <Container className="">
         <Row>
@@ -141,7 +145,6 @@ function Login() {
           >
             <Form className="login-form" onSubmit={handleLogin}>
               <h3 className="pb-2">Log in</h3>
-
               <Form.Group className="mb-3">
                 <Form.Control
                   type="text"
@@ -280,7 +283,7 @@ function Login() {
                 disabled={captchaValue === null}
                 style={{ width: "100%" }}
               >
-                Log In With Password
+               {isLoading && <Spinner variant="light" animation="border" size="sm"/>}  Log In With Password
               </Button>
               <p style={{ fontSize: "15px" }}>
                 <Link to="/forget"> Forgot Password?</Link>

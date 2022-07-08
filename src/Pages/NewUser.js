@@ -220,7 +220,7 @@ function NewUser() {
                         <Button
                           style={{
                             position: "absolute",
-                            right: "10px",
+                            right: "14px",
                             bottom: "5px",
                             backgroundColor: "white",
                             color: "black",
@@ -257,7 +257,7 @@ function NewUser() {
                         <Button
                           style={{
                             position: "absolute",
-                            right: "10px",
+                            right: "14px",
                             bottom: "5px",
                             backgroundColor: "white",
                             color: "black",
@@ -289,7 +289,7 @@ function NewUser() {
                 </Button>
               </div>
               <p style={{ textAlign: "right" }}>
-                Already registered? <a href="/">Login</a>
+                Already registered? <a href="/login">Login</a>
               </p>
             </Form>
           </Col>

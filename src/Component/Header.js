@@ -7,6 +7,7 @@ import {
   Nav,
   Button,
   Offcanvas,
+  Spinner,
 } from "react-bootstrap";
 import { useSelector } from "react-redux/es/exports";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +15,7 @@ import { useLogoutUserMutation } from "../services/appApi";
 function Header() {
   let navigate = useNavigate();
   const { user, token } = useSelector((state) => state.user);
-  const [logout] = useLogoutUserMutation();
+  const [logout,{isLoading}] = useLogoutUserMutation();
   async function handleLogout() {
     try {
       const res = await logout();
@@ -86,8 +87,8 @@ function Header() {
                 </Nav.Item>
 
                 {user && (
-                  <Button variant="outline-danger" onClick={handleLogout} style={{ fontSize: '20px' }}>
-                    Logout
+                  <Button variant="outline-danger" className="ml-2" onClick={handleLogout} style={{ fontSize: '20px' }}>
+                    {isLoading && <Spinner animation="grow" variant="danger" size ="sm" />} Logout
                   </Button>
                 )}
               </Nav>

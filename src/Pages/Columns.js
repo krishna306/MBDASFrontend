@@ -2,7 +2,6 @@ import filterFactory, {
     textFilter,
     selectFilter,
     numberFilter,
-    dateFilter,
   } from "react-bootstrap-table2-filter";
   const customTotal = (from, to, size) => (
     <span className="react-bootstrap-table-pagination-total">
@@ -42,7 +41,7 @@ const columns = [
       dataField: "date",
       text: "Date of Death",
       sort: true,
-      filter: dateFilter({
+      filter: textFilter({
         placeholder: "Enter Date",
       }),
       headerStyle: () => {
@@ -60,10 +59,10 @@ const columns = [
         if (cell == null) {
           return;
         }
-        return `${("0" + dateObj.getDate()).slice(-2)}/${(
+        return `${dateObj.getFullYear()}-${(
           "0" +
           (dateObj.getMonth() + 1)
-        ).slice(-2)}/${dateObj.getFullYear()}`;
+        ).slice(-2)}-${("0" + dateObj.getDate()).slice(-2)}`;
       },
     },
     {
