@@ -67,10 +67,10 @@ function DataAnalytics() {
   function extractDeathInYearData() {
     if (!isLoading) {
       for (let item of processedData) {
-        yeardeathData[item.date.slice(11, 15)] = yeardeathData[
-          item.date.slice(11, 15)
+        yeardeathData[item.date.slice(0, 4)] = yeardeathData[
+          item.date.slice(0, 4)
         ]
-          ? yeardeathData[item.date.slice(11, 15)] + 1
+          ? yeardeathData[item.date.slice(0, 4)] + 1
           : 1;
       }
       setYearDeathData(yeardeathData);
@@ -79,7 +79,7 @@ function DataAnalytics() {
   function extractDataForLineGraph() {
     if (!isLoading) {
       for (let item of processedData) {
-        const year = item.date.slice(11, 15);
+        const year = item.date.slice(0, 4);
         lineGraphData[year] = {
           male: 0,
           female: 0,
@@ -88,22 +88,22 @@ function DataAnalytics() {
       }
       for (let item of processedData) {
         if (item.gender === "male") {
-          lineGraphData[item.date.slice(11, 15)].male = lineGraphData[
-            item.date.slice(11, 15)
+          lineGraphData[item.date.slice(0, 4)].male = lineGraphData[
+            item.date.slice(0, 4)
           ].male
-            ? lineGraphData[item.date.slice(11, 15)].male + 1
+            ? lineGraphData[item.date.slice(0, 4)].male + 1
             : 1;
         } else if (item.gender === "other") {
-          lineGraphData[item.date.slice(11, 15)].other = lineGraphData[
-            item.date.slice(11, 15)
+          lineGraphData[item.date.slice(0, 4)].other = lineGraphData[
+            item.date.slice(0, 4)
           ].other
-            ? lineGraphData[item.date.slice(11, 15)].other + 1
+            ? lineGraphData[item.date.slice(0, 4)].other + 1
             : 1;
         } else {
-          lineGraphData[item.date.slice(11, 15)].female = lineGraphData[
-            item.date.slice(11, 15)
+          lineGraphData[item.date.slice(0, 4)].female = lineGraphData[
+            item.date.slice(0, 4)
           ].female
-            ? lineGraphData[item.date.slice(11, 15)].female + 1
+            ? lineGraphData[item.date.slice(0, 4)].female + 1
             : 1;
         }
       }
