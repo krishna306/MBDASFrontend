@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useSignupUserMutation } from "../services/appApi";
 import PageNotFound from "./PageNotFound";
@@ -59,6 +59,7 @@ function NewUser() {
       } else {
         setTimeout(() => {
           navigate("/login");
+          window.location.reload();
         }, 1000);
         toast.success("Registered Successfully");
       }
@@ -285,7 +286,7 @@ function NewUser() {
                   type="submit"
                   disabled={captchaValue === null}
                 >
-                  Register
+                 {isLoading && <Spinner animation="border" variant="light"  size="sm"/>} Register
                 </Button>
               </div>
               <p style={{ textAlign: "right" }}>
