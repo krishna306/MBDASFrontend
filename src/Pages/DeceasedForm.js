@@ -1764,7 +1764,7 @@ export default function DeceasedForm() {
           <hr />
           <div style={{ marginLeft: "3%" }} className="my-2">
             <ReCAPTCHA
-              sitekey="6LfxS74gAAAAAAq93t9WfY3cLfJRe-T7PRRJGb7_"
+              sitekey="6Ld8Q9QgAAAAAFQ4f1dnE8tDPpt-Eh1WbXKPjGWj"
               onChange={onChange}
             />
           </div>

@@ -67,7 +67,8 @@ function Forget() {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     try {
-      Axios.post("http://localhost:8000/users/forgotpassword", {
+     // Axios.post("http://localhost:8000/users/forgotpassword", {
+       Axios.post("https://mbdas.herokuapp.com/users/forgotpassword", {
         mobile: user.EmailMobile.slice(3),
         password: user.NewPassword,
       })

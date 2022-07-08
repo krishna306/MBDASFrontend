@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD8lj24bLcln_EmcZHen_H7ANpYbUf-O08",
-    authDomain: "react-otp-mbda.firebaseapp.com",
-    projectId: "react-otp-mbda",
-    storageBucket: "react-otp-mbda.appspot.com",
-    messagingSenderId: "90347485331",
-    appId: "1:90347485331:web:31c343b21ca59f7de03566",
-    measurementId: "G-RGXHK5T93N"
+  apiKey: "AIzaSyA5SWHzw3Qrbmg-TqEcRjglT-W8JtJ5GhE",
+  authDomain: "mbdas-376cf.firebaseapp.com",
+  projectId: "mbdas-376cf",
+  storageBucket: "mbdas-376cf.appspot.com",
+  messagingSenderId: "1060619051599",
+  appId: "1:1060619051599:web:75e42e0e49c5d9bad9403a",
+  measurementId: "G-WKB7XJ7G59"
 };
 
 // Initialize Firebase

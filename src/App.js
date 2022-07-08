@@ -32,3 +32,6 @@ function App() {
 }
 
 export default App;
+// Uses local host at two placces 
+// src\services\appApi.js  at Line number 6
+// src\Pages\Forget.js at Line number 70
