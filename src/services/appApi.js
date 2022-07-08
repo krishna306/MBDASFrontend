@@ -4,7 +4,7 @@ export const appApi = createApi({
   reducerPath: "appApi",
   baseQuery: fetchBaseQuery({
     // baseUrl: "http://localhost:8000",
-    baseUrl :"https://mbdas.herokuapp.com/",
+    baseUrl :"https://mbdas.herokuapp.com",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().user.token;
       if (token) {
