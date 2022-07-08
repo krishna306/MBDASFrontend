@@ -51,19 +51,19 @@ const columns = [
           whiteSpace: "nowrap",
         };
       },
-      // formatter: (cell) => {
-      //   let dateObj = cell;
-      //   if (typeof cell !== "object") {
-      //     dateObj = new Date(cell);
-      //   }
-      //   if (cell == null) {
-      //     return;
-      //   }
-      //   return `${("0" + dateObj.getDate()).slice(-2)}/${(
-      //     "0" +
-      //     (dateObj.getMonth() + 1)
-      //   ).slice(-2)}/${dateObj.getFullYear()}`;
-      // },
+      formatter: (cell) => {
+        let dateObj = cell;
+        if (typeof cell !== "object") {
+          dateObj = new Date(cell);
+        }
+        if (cell == null) {
+          return;
+        }
+        return `${("0" + dateObj.getDate()).slice(-2)}/${(
+          "0" +
+          (dateObj.getMonth() + 1)
+        ).slice(-2)}/${dateObj.getFullYear()}`;
+      },
     },
     {
       dataField: "gender",
