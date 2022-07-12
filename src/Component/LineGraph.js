@@ -60,27 +60,26 @@ function LineGraph(props) {
   Object.keys(Data).forEach(function (key) {
     Statistics3.push(Data[key].other);
   });
-
   const data = {
     labels,
     datasets: [
       {
         label: "Male",
         data: Statistics1,
-        borderColor: "rgba(100,149,237)",
-        backgroundColor: "rgba(100,149,237)",
+        borderColor: "rgba(229,43,124,0.4)",
+        backgroundColor:  "rgba(229,43,124,1)",
       },
       {
         label: "Female",
         data: Statistics2,
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        borderColor: "rgba(223,229,43,0.4)",
+        backgroundColor: "rgba(223,229,43,1)",
       },
       {
         label: "Other",
         data: Statistics3,
-        borderColor: "rgba(65,105,225,0.8))",
-        backgroundColor: "rgba(65,105,225)",
+        borderColor: "rgba(229,111,43,0.6)",
+        backgroundColor:  "rgba(229,111,43,1)",
       },
     ],
   };
