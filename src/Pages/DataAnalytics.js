@@ -246,7 +246,7 @@ function DataAnalytics() {
               </Col>
               <Col className="mb-2">
                 <Graph
-                  data={{ data: diseaseData, title: "Disease wise Death Toll" }}
+                  data={{ data: diseaseData, title: "Cause of Death" }}
                 />
               </Col>
             </Row>
@@ -264,7 +264,7 @@ function DataAnalytics() {
                 <Graph
                   data={{
                     data: ailmentData,
-                    title: "",
+                    title: "Substance Addiction Statistics",
                   }}
                 ></Graph>
               </Col>
