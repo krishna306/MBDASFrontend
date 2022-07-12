@@ -504,8 +504,8 @@ export default function DeceasedForm() {
     setCaptchaValue(value);
     console.log("Captcha value:", value);
   }
-  console.log(applicantField);
-  console.log(deceasedField);
+  // console.log(applicantField);
+  // console.log(deceasedField);
   return (
     <>
       {/* <FormNav /> */}
@@ -1417,17 +1417,17 @@ export default function DeceasedForm() {
                     required
                   >
                     <option value="null">Select</option>
-                    <option value="COVID19">COVID-19</option>
-                    <option value="cancer">Cancer</option>
-                    <option value="organfailure">Organ Failure</option>
-                    <option value="dengu">Dengu</option>
-                    <option value="malaria">Malaria</option>
-                    <option value="naturalcalamity">Natural Calamity</option>
-                    <option value="pregnancy">Pregnancy</option>
-                    <option value="accidental">Accident</option>
-                    <option value="suicide">Suicide</option>
-                    <option value="narcotics">Narcotics</option>
-                    <option value="heartattck">Heart  Attack</option>
+                    <option value="COVID-19">COVID-19</option>
+                    <option value="Cancer">Cancer</option>
+                    <option value="Organ Failure">Organ Failure</option>
+                    <option value="Dengu">Dengu</option>
+                    <option value="Malaria">Malaria</option>
+                    <option value="Natural Calamity">Natural Calamity</option>
+                    <option value="Pregnancy">Pregnancy</option>
+                    <option value="Accident">Accident</option>
+                    <option value="Suicide">Suicide</option>
+                    <option value="Narcotics">Narcotics</option>
+                    <option value="Heart  Attack">Heart  Attack</option>
                     <option value="other">
                       others
                     </option>
