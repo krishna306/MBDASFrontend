@@ -19,8 +19,6 @@ export default function DeceasedForm() {
   const [createApplicant, { isLoading }] = useCreateApplicantMutation();
   const [createDeceased] = useCreateDeceasedMutation();
 
-
-
   // applicant details
   const [isSubmit, setIsSubmit] = useState(false);
   //Files Uploading
@@ -115,8 +113,6 @@ export default function DeceasedForm() {
     );
   }
 
-
-
   //Upload files to cloudinary
 
   async function uploadFile(e) {
@@ -177,7 +173,7 @@ export default function DeceasedForm() {
       applicantField.mobile = user.mobile;
       setApplicantFormErrors(validateApplicant(applicantField));
       const res = await createApplicant(applicantField);
-      
+
       if (res.error) {
         alert(res.error);
       }
@@ -185,7 +181,6 @@ export default function DeceasedForm() {
       return alert(error.message);
     }
     try {
-     
       setDeceasedFormErrors(validateDeceased(deceasedField));
       const obj = validateDeceased(deceasedField);
       deceasedField.signature = Files.signature;
@@ -509,6 +504,8 @@ export default function DeceasedForm() {
     setCaptchaValue(value);
     console.log("Captcha value:", value);
   }
+  console.log(applicantField);
+  console.log(deceasedField);
   return (
     <>
       {/* <FormNav /> */}
@@ -706,7 +703,6 @@ export default function DeceasedForm() {
                   >
                     <option value="null">SELECT STATE</option>
                     <option value="assam">ASSAM</option>
-                    <option value="other">OTHER</option>
                   </Form.Select>
                   <span style={{ color: "red" }}>
                     {applicantFormErrors.state}
@@ -1175,7 +1171,6 @@ export default function DeceasedForm() {
                   >
                     <option value="null">SELECT STATE</option>
                     <option value="assam"> ASSAM</option>
-                    <option value="other">OTHER</option>
                   </Form.Select>
                   <span style={{ color: "red" }}>
                     {deceasedFormErrors.deceasedstate}
@@ -1411,18 +1406,32 @@ export default function DeceasedForm() {
               <Row>
                 <Col xs={3}>
                   <Form.Label>
-                    Name of Disease/Actual cause of Death
+                    cause of Death
                     <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
-                  <Form.Control
-                    type="text"
+                  <Form.Select
                     name="disease"
                     onChange={handleDeceasedInput}
-                    placeholder="(In English)"
                     required
-                  />
+                  >
+                    <option value="null">Select</option>
+                    <option value="COVID19">COVID-19</option>
+                    <option value="cancer">Cancer</option>
+                    <option value="organfailure">Organ Failure</option>
+                    <option value="dengu">Dengu</option>
+                    <option value="malaria">Malaria</option>
+                    <option value="naturalcalamity">Natural Calamity</option>
+                    <option value="pregnancy">Pregnancy</option>
+                    <option value="accidental">Accident</option>
+                    <option value="suicide">Suicide</option>
+                    <option value="narcotics">Narcotics</option>
+                    <option value="heartattck">Heart  Attack</option>
+                    <option value="other">
+                      others
+                    </option>
+                  </Form.Select>
                 </Col>
                 <Col xs={3}></Col>
               </Row>
@@ -1486,8 +1495,8 @@ export default function DeceasedForm() {
                     name="panmasala"
                     onChange={handleDeceasedInput}
                     type="number"
-                  // min={0}
-                  // max={deceasedField.age}
+                    // min={0}
+                    // max={deceasedField.age}
                   />
                   <span style={{ color: "red" }}>
                     {deceasedFormErrors.panmasala}
@@ -1596,7 +1605,8 @@ export default function DeceasedForm() {
           {/* form part 3 starts */}
 
           <div className="descrip">
-            Upload supporting documents (Supported formats .jpeg/jpg/png) (max. 2MB)
+            Upload supporting documents (Supported formats .jpeg/jpg/png) (max.
+            2MB)
           </div>
 
           <div className="conatinerFluid">
@@ -1613,7 +1623,6 @@ export default function DeceasedForm() {
                     type="file"
                     name="deathCertificate"
                     accept="image/*"
-
                     onChange={handleFileValidation}
                   />
                 </Col>
@@ -1649,7 +1658,6 @@ export default function DeceasedForm() {
                     type="file"
                     name="goanburahCertificate"
                     accept="image/*"
-
                     onChange={handleFileValidation}
                   />
                 </Col>
