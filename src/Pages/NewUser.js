@@ -222,7 +222,7 @@ function NewUser() {
                           style={{
                             position: "absolute",
                             right: "14px",
-                            bottom: "0px",
+                            bottom: "1px",
                             backgroundColor: "white",
                             color: "black",
                             border: "none",
@@ -259,7 +259,7 @@ function NewUser() {
                           style={{
                             position: "absolute",
                             right: "14px",
-                            bottom: "0px",
+                            bottom: "1px",
                             backgroundColor: "white",
                             color: "black",
                             border: "none",
