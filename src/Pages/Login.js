@@ -250,7 +250,7 @@ function Login() {
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3" style={{position: "relative",padding:"0px"}}>
+              <Form.Group className="mb-3" style={{position: "relative",padding:"1px"}}>
                 <Form.Control
                   type={visibility ? "text" : "password"}
                   placeholder="Password"
