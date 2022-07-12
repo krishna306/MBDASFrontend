@@ -109,6 +109,7 @@ export default function DeceasedForm() {
 
   //User Login Verification
   if (!user) {
+    setTimeout(() => { navigate("/") }, 2000);
     return (
       <div className="text-center m-4">
         <h3>Please Login first...</h3>
@@ -178,7 +179,6 @@ export default function DeceasedForm() {
       applicantField.mobile = user.mobile;
       setApplicantFormErrors(validateApplicant(applicantField));
       const res = await createApplicant(applicantField);
-      
       if (res.error) {
         setId(res.error.data._id)
         alert(res.error);
@@ -189,38 +189,41 @@ export default function DeceasedForm() {
     } catch (error) {
       return alert(error.message);
     }
-    try {
-     
-      setDeceasedFormErrors(validateDeceased(deceasedField));
-      const obj = validateDeceased(deceasedField);
-      deceasedField.creator = Id;
-      deceasedField.signature = Files.signature;
-      deceasedField.otherDocuments = Files.otherDocuments;
-      deceasedField.goanburahCertificate = Files.goanburahCertificate;
-      deceasedField.deathCertificate = Files.goanburahCertificate;
-      if (Object.keys(obj).length === 0) {
-        setSubmittingFromData(true);
-        const res = await createDeceased(deceasedField);
-        setSubmittingFromData(false);
-        console.log(res);
-        if (res.error && res.error.data.code === 11000) {
-          if (res.error.data.keyPattern.aadhar === 1) {
-            toast.error("Record of Deceased already there");
+    if (Id !== "") {
+      try {
+
+        setDeceasedFormErrors(validateDeceased(deceasedField));
+        const obj = validateDeceased(deceasedField);
+        deceasedField.creator = Id;
+        deceasedField.signature = Files.signature;
+        deceasedField.otherDocuments = Files.otherDocuments;
+        deceasedField.goanburahCertificate = Files.goanburahCertificate;
+        deceasedField.deathCertificate = Files.goanburahCertificate;
+        if (Object.keys(obj).length === 0) {
+          setSubmittingFromData(true);
+          const res = await createDeceased(deceasedField);
+          setSubmittingFromData(false);
+          console.log(res);
+          if (res.error && res.error.data.code === 11000) {
+            if (res.error.data.keyPattern.aadhar === 1) {
+              toast.error("Record of Deceased already there");
+            }
+          } else if (res.error) {
+            alert(res.error);
+          } else {
+            toast.success("Form Submitted Successfully.");
+            setTimeout(() => {
+              navigate("/");
+            }, 2000);
           }
-        } else if (res.error) {
-          alert(res.error);
         } else {
-          toast.success("Form Submitted Successfully.");
-          setTimeout(() => {
-            navigate("/");
-          }, 2000);
+          alert("Something is wrong in form details, please look up!");
         }
-      } else {
-        alert("Something is wrong in form details, please look up!");
+      } catch (error) {
+        return alert(error.message);
       }
-    } catch (error) {
-      return alert(error.message);
     }
+
   };
 
   const validateApplicant = (values) => {
