@@ -250,7 +250,7 @@ function Login() {
                 />
               </Form.Group>
 
-              <Form.Group className="mb-3" style={{position: "relative",padding:"1px"}}>
+              <Form.Group className="mb-3" style={{position: "relative"}}>
                 <Form.Control
                   type={visibility ? "text" : "password"}
                   placeholder="Password"
@@ -262,7 +262,7 @@ function Login() {
                   <Button style={{
                       position: "absolute", 
                       right: "10px", 
-                      bottom: "5px", 
+                      bottom: "1px", 
                       backgroundColor: "white", 
                       color: "black", 
                       border: "none"
