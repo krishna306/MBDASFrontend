@@ -43,14 +43,13 @@ function AdminDashboard() {
   if (isError) {
     return (
       <div className="text-center my-4">
-        <Spinner animation="border" variant="primary" />
-        <h5 className="mt-2">Loading...</h5>
+        <h5 className="mt-2">Some Error Occured</h5>
       </div>
     );
   }
   async function deleteAdminUser(email) {
     if (user.email === email) {
-      toast.info("Cann't be deleted");
+      toast.info("Can't be deleted");
       return;
     }
     try {
@@ -73,7 +72,7 @@ function AdminDashboard() {
         <td>
           <Button
             id={info.email}
-            variant="outline-danger"
+            variant="danger"
             onClick={() => deleteAdminUser(info.email)}
           >
             <Trash />
@@ -111,49 +110,39 @@ function AdminDashboard() {
             <Row>
               <Col className="pl-0">
                 <Card border="light" style={{ width: "18rem" }}>
-                  <Card.Header>Add New Admin</Card.Header>
-                  <Card.Body>
-                    <Card.Text>Create new admin.</Card.Text>
-                    <LinkContainer to="/register">
-                      <Button>
-                        <PersonPlusFill className="mb-1" /> Click here
-                      </Button>
-                    </LinkContainer>
-                  </Card.Body>
+                  <LinkContainer to="/register">
+                    <Button>
+                      <PersonPlusFill className="mb-1" />
+                      Add New Admin
+                    </Button>
+                  </LinkContainer>
                 </Card>
               </Col>
               <Col className="pl-0">
                 <Card border="light" style={{ width: "18rem" }}>
-                  <Card.Header>Application Form</Card.Header>
-                  <Card.Body>
-                    <Card.Text>Enter deceased person details here.</Card.Text>
-                    <LinkContainer to="/form">
-                      <Button>
-                        <ListUl className="mb-1" /> Click here
-                      </Button>
-                    </LinkContainer>
-                  </Card.Body>
+                  <LinkContainer to="/form">
+                    <Button>
+                      <ListUl className="mb-1" /> Enter Deceased Details
+                    </Button>
+                  </LinkContainer>
                 </Card>
               </Col>
               <Col className="pl-0">
                 <Card border="light" style={{ width: "18rem" }}>
-                  <Card.Header>Data Analysis</Card.Header>
-                  <Card.Body>
-                    <Card.Text>Goto Data analysis page.</Card.Text>
-                    <LinkContainer to="/dataanalytics">
-                      <Button>
-                        <GraphUpArrow className="mb-1" /> Click here
-                      </Button>
-                    </LinkContainer>
-                  </Card.Body>
+                  <LinkContainer to="/dataanalytics">
+                    <Button>
+                      <GraphUpArrow className="mb-1" /> Go To Data Analysis
+                    </Button>
+                  </LinkContainer>
                 </Card>
               </Col>
             </Row>
           </Container>
         </div>
         <div>
-          <Container>
-            <Table striped bordered hover className="mt-2 mb-4 text-center">
+            <h4 className="mt-4" >List of All Admin</h4>
+            <Row style={{border:"2px solid blue"}} className="">
+            <Table striped bordered hover className="text-center" >
               <thead>
                 <tr>
                   <th>First Name</th>
@@ -164,7 +153,8 @@ function AdminDashboard() {
               </thead>
               <tbody>{DisplayData}</tbody>
             </Table>
-          </Container>
+            </Row>
+
         </div>
       </Container>
     </div>

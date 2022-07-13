@@ -15,11 +15,11 @@ function Footer() {
           {" "}
           Designed &amp; Developed by{" "}
           <span style={{ color: "aqua" }}>
-            Centre for Development of Advanced Computing, India.
+            Centre for Development of Advanced Computing Center In North East (C-DAC CINE), Silchar, Assam, India.
           </span>
         </h5>
         <h5 style={{ color: "white", fontSize: "15px" }}>
-          Government of Assam. All Rights Reserved © {Date().slice(11, 15)}
+          Government of Maharashtra. All Rights Reserved © {Date().slice(11, 15)}
         </h5>
       </div>
     </div>

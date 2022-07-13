@@ -45,7 +45,7 @@ function Login() {
             if (res.data.user.role === "admin") {
               navigate("/adminDashboard");
             } else {
-              navigate("/");
+              navigate("/form");
             }
           }, 2000);
           
@@ -78,7 +78,7 @@ function Login() {
               navigate("/adminDashboard");
             }
             else {
-              navigate("/");
+              navigate("/form");
             }
             
           },1000)

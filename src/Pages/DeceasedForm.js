@@ -19,6 +19,10 @@ export default function DeceasedForm() {
   const [createApplicant, { isLoading }] = useCreateApplicantMutation();
   const [createDeceased] = useCreateDeceasedMutation();
 
+  // District of a perticular State
+  const [district, setDistrict] = useState([]);
+  const [deceasedDistrict, setDeceasedDistrict] = useState([]);
+
   // applicant details
   const [isSubmit, setIsSubmit] = useState(false);
   //Files Uploading
@@ -96,6 +100,10 @@ export default function DeceasedForm() {
     deathCertificate: "",
     goanburahCertificate: "",
     otherDocuments: "",
+    applicantAadhar:"",
+    applicantPanCard:"",
+    deceasedAadhar:""
+    
   });
 
   useEffect(() => {
@@ -154,12 +162,878 @@ export default function DeceasedForm() {
     }
   }
 
+  function populate(State, forWhat) {
+    let s7 = {};
+
+    s7.value = State;
+    let optionArray;
+    if (s7.value == "andaman and nicobar islands") {
+      optionArray = [
+        "nicobar|Nicobar",
+        "north and middle andaman|North and Middle Andaman",
+        "south andaman|South Andaman",
+      ];
+    } else if (s7.value === "andhra pradesh") {
+      optionArray = [
+        "anantapur|Anantapur",
+        "chittoor|Chittor",
+        "east godavari|East Godavari",
+        "guntur|Guntur",
+        "kadapa|Kadapa",
+        "krishna|Krishna",
+        "kurnool|Kurnool",
+        "nellore|Nellore",
+        "prakasam|Prakasam",
+        "srikakulum|Srikakilum",
+        "vishakhapatnam|Vishakhapatnam",
+        "vizianagaram|Vizianagaram",
+        "west godavari|West Godavari",
+      ];
+    } else if (s7.value === "arunachal pradesh") {
+      optionArray = [
+        "anjaw|Anjaw",
+        "changalng|Changlang",
+        "dibang valley|Dibang Valley",
+        "east kameng|East Kameng",
+        "east siang|East Siang",
+        "itanagar capital complex|Itanagar Capital Complex",
+        "kamle|Kamle",
+        "kra daadi|Kra Daadi",
+        "kurung kumey|Kurung Kumey",
+        "lepa rada|Lepa Rada",
+        "lohit|Lohit",
+        "longding|Longding",
+        "lower dibang valley|Lower Dibang Valley",
+        "lower siang|Lower Siang",
+        "lower subansiri|Lower Subansiri",
+        "namsai|Namsai",
+        "pakke kessang|Pakke Kessang",
+        "papum pare|Papum Pare",
+        "shi yomi|Shi Yomi",
+        "siang|Siang",
+        "tawang|Tawang",
+        "tirap|Tirap",
+        "upper siang|Upper Siang",
+        "upper subansiri|Upper Subansiri",
+        "west kameng|West kameng",
+        "west siang|West Siang",
+      ];
+    } else if (s7.value === "assam") {
+      optionArray = [
+        "baksa|Baksa",
+        "barpeta|Barpeta",
+        "biswanath|Biswanath",
+        "bongaigaon|Bongaigaon",
+        "cachar|Cachar",
+        "charaideo|Charaideo",
+        "chirang|Chirang",
+        "daranng|Daranng",
+        "dhemaji|Dhemaji",
+        "dhubri|Dhubri",
+        "dibrugarh|Dibrugarh",
+        "dima hasao|Dima Hasao",
+        "goalpara|Goalpara",
+        "hailankandi|Hailankandi",
+        "hojai|Hojai",
+        "jorhat|Jorhat",
+        "kamrup metropolitan|Kamrup Metropolitan",
+        "kamrup rural|Kamrup Rural",
+        "karbi anglong|Karbi Anglong",
+        "karimganj|Karimganj",
+        "kokrajhar|Kokrajhar",
+        "lakhimpur|Lakhimpur",
+        "majuli|Majuli",
+        "morigaon|Morigaon",
+        ,
+        "nagaon|Nagaon",
+        "nalbari|Nalbari",
+        "sivasagar|Sivasagar",
+        "sonitpur|Sonitpur",
+        "south salmara mankachar|South Salmara Mankachar",
+        "tinsukia|Tinsukia",
+        "udalguri|Udalguri",
+        "west karbi anglong|West Karbi Anglong",
+      ];
+    } else if (s7.value === "bihar") {
+      optionArray = [
+        "araria|Araria",
+        "arwal|Arwal",
+        "aurangabad|Aurangabad",
+        "banka|Banka",
+        "begusarai|Begusarai",
+        "bhojpur|Bhojpur",
+        "buxar|Buxar",
+        "darbhanga|Dharbhanga",
+        "east champaran|East Champaran",
+        "gaya|Gaya",
+        "gopalganj|Gopalganj",
+        "jamui|Jamui",
+        "jehanabad|Jehanabad",
+        "kaimur|Kaimur",
+        "katihar|Katihar",
+        "khagaria|Khagaria",
+        "kishanganj|Kishanganj",
+        "lakhisarai|Lakhisarai",
+        "madhepura|Madhepura",
+        "madhubani|Madhubani",
+        "munger|Munger",
+        "muzaffarpur|Muzaffapur",
+        "nalanda|Nalanda",
+        "nawada|Nawada",
+        "patna|Patna",
+        "purnia|Purnia",
+        "rohtas|Rohtas",
+        "saharsa|Saharsa",
+        "samashtipur|Samashtipur",
+        "saran|Saran",
+        "sheikhpura|Sheikhpura",
+        "sheohar|Sheohar",
+        "sitamarhi|Sitamarhi",
+        "siwan|Siwan",
+        "supaul|Supaul",
+        "vaishali|Vaishali",
+        "west champaran|West Champaran",
+      ];
+    } else if (s7.value === "chandigarh") {
+      optionArray = ["chandigarh|Chandigarh"];
+    } else if (s7.value === "chattisgarh") {
+      optionArray = [
+        "balod|Balod",
+        "baloda bazaar|Baloda Bazaar",
+        "balrampur|Balrampur",
+        "bastar|Bastar",
+        "bemetara|Bemetara",
+        "bijapur|Bijapur",
+        "bilaspur|Bilaspur",
+        "dantewada|Dantewada",
+        "dhamtari|Dhamtari",
+        "durg|Durg",
+        "gariaband|Gariaband",
+        "gaurela pendra marwahi|Gaurela Pendra Marwahi",
+        "janjgir-champa|Janjgir-Champa",
+        "jashpur|Jahspur",
+        "kanker|Kanker",
+        "kawardha|Kawardha",
+        "kondagaon|Kondagaon",
+        "korba|Korba",
+        "koriya|Koriya",
+        "mahasamund|Mahasamund",
+        "mungeli|Mungeli",
+        "narayanpur|Narayanpur",
+        "raigarh|Raigarh",
+        "raipur|Raipur",
+        "rajnandgaon|Rajnandgaon",
+        "sukma|Sukma",
+        "surajpur|Surjapur",
+        "surguja|Surguja",
+      ];
+    } else if (s7.value === "dadra and nagar haveli") {
+      optionArray = ["dadra and nagar haveli|Dadra and Nagar Haveli"];
+    } else if (s7.value === "daman and diu") {
+      optionArray = ["daman|Daman", "diu|Diu"];
+    } else if (s7.value === "delhi") {
+      optionArray = [
+        "central delhi|Central Delhi",
+        "east delhi|East Delhi",
+        "new delhi|New Delhi",
+        "north delhi|North Delhi",
+        "north east delhi|North East Delhi",
+        "north west delhi|North West Delhi",
+        "shahdara|Shahdara",
+        "south delhi|South Delhi",
+        "south east delhi|South East Delhi",
+        "south west delhi|South West Delhi",
+        "west delhi|West Delhi",
+      ];
+    } else if (s7.value === "goa") {
+      optionArray = ["north goa|North Goa", "south goa|South Goa"];
+    } else if (s7.value === "gujarat") {
+      optionArray = [
+        "ahmedabad|Ahmedabad",
+        "ahmedabad corporation|Ahmedabad Corporation",
+        "amreli|Amreli",
+        "anand|Anand",
+        "aravalli|Aravalli",
+        "banaskantha|Banaskantha",
+        "bharuch|Bharuch",
+        "bhavnagar|Bhavnagar",
+        "bhavnagar corporation|Bhavnagar Corporation",
+        "botad|Botad",
+        "chhotaudepur|Chhotaudepur",
+        "dahod|Dahod",
+        "dang|Dang",
+        "devbhumi dwaraka|Devbhumi Dwaraka",
+        "gandhinagar|Gandhinagar",
+        "gir somnath|Gir Somnath",
+        "jamnagar|Jamnagar",
+        "jamnagar corporation|Jamnagar Corporation",
+        "junagadh|Junagadh",
+        "junagadh corporation|junagadh corporation",
+        "kheda|Kheda",
+        "kutch|Kutch",
+        "mahisagar|Mahisagar",
+        "mehsana|Mehsana",
+        "morbi|Morbi",
+        "narmada|Narmada",
+        "navsari|Navsari",
+        "panchmahal|Panchmahal",
+        "patan|Patan",
+        "porbandar|Porbandar",
+        "rajkot|Rajkot",
+        "rajkot corporation|Rajkot Corporation",
+        "sabarkantha|Sabarkantha",
+        "surat|Surat",
+        "surat corporation|Surat Corporation",
+        "surendranagar|Surendranagar",
+        "tapi|Tapi",
+        "vadodara|Vadodara",
+        "vadodara corporation|Vadodara Corporation",
+        "valsad|Valsad",
+      ];
+    } else if (s7.value === "haryana") {
+      optionArray = [
+        "ambala|Ambala",
+        "bhiwani|Bhiwani",
+        "charkhi dadri|Charkhi Dadri",
+        "faridabad|Faridabad",
+        "fatehabad|Fatehabad",
+        "gurgaon|Gurgaon",
+        "hisar|Hisar",
+        "jhajjar|Jhajjar",
+        "jind|Jind",
+        "kaithal|Kaithal",
+        "karnal|Karnal",
+        "kurukshetra|Kurukshetra",
+        "mahendragarh|Mahendragarh",
+        "nuh|Nuh",
+        "palwal|Palwal",
+        "panchkula|Panchkula",
+        "panipat|Panipat",
+        "rewari|Rewari",
+        "rohtak|Rohtak",
+        "sirsa|Sirsa",
+        "sonipat|Sonipat",
+        "yamunanagar|Yamunanagar",
+      ];
+    } else if (s7.value === "himachal pradesh") {
+      optionArray = [
+        "bilaspur|Bilaspur",
+        "chamba|Chamba",
+        "hamirpur|Hamirpur",
+        "kangra|kangra",
+        "kinnaur|Kinnaur",
+        "kullu|Kullu",
+        "lahaul spiti|Lahaul Spiti",
+        "mandi|Mandi",
+        "shimla|Shimla",
+        "sirmaur|Sirmaur",
+        "solan|Solan",
+        "una|Una",
+      ];
+    } else if (s7.value === "jammu and kashmir") {
+      optionArray = [
+        "anantnag|Anantnag",
+        "bandipore|Bandipore",
+        "baramulla|Baramulla",
+        "budgam|Budgam",
+        "doda|Doda",
+        "ganderbal|Ganderbal",
+        "jammu|Jammu",
+        "kathua|Kathua",
+        "kishtwar|Kishtwar",
+        "kulgam|Kulgam",
+        "kupwara|Kupwara",
+        "poonch|Poonch",
+        "pulwama|Pulwama",
+        "rajouri|Rajouri",
+        "ramban|Ramban",
+        "reasi|Reasi",
+        "samba|Samba",
+        "shopian|Shopian",
+        "srinagar|Srinagar",
+        "udhampur|Udhampur",
+      ];
+    } else if (s7.value === "jharkhand") {
+      optionArray = [
+        "bokaro|Bokaro",
+        "chatra|Chatra",
+        "deoghar|Deoghar",
+        "dhanbad|Dhanbad",
+        "dumka|Dumka",
+        "east singhbhum|East Singhbhum",
+        "garhwa|Garhwa",
+        "giridih|Giridih",
+        "godda|Godda",
+        "gumla|Gumla",
+        "hazaribagh|Hazaribagh",
+        "jamtara|Jamtara",
+        "khunti|Khunti",
+        "koderma|koderma",
+        "latehar|Latehar",
+        "pakur|Pakur",
+        "palamu|Palamu",
+        "ramgarh|Ramgarh",
+        "ranchi|ranchi",
+        "sahebganj|Sahebganj",
+        "seraikela kharsawan|Seraikela Kharsawan",
+        "simdega|Simdega",
+        "west singhbhum|West Singhbhum",
+      ];
+    } else if (s7.value === "karnataka") {
+      optionArray = [
+        "bagalkot|Bagalkot",
+        "bangalore rural|Bangalore Rural",
+        "Bangalore Urban|Bangalore Urban",
+        "bbmp|BBMP",
+        "belgaum|Belgaum",
+        "bellary|Bellary",
+        "bidam|Bidam",
+        "chamarajanagar|Chamarajanagar",
+        "chikamagalur|Chikamagalur",
+        "chikkaballapur|Chikkaballapur",
+        "chitradurga|Chitradurga",
+        "dakshina kannada|Dakshina Kannada",
+        "devanagere|Devanagere",
+        "dharwad|Dharwad",
+        "gadag|Gadag",
+        "gulbarga|Gulbarga",
+        "hassan|Hassan",
+        "haveri|Haveri",
+        "kodagu|Kodagu",
+        "kolar|Kolar",
+        "koppal|Koppal",
+        "mandya|Mandya",
+        "mysore|Mysore",
+        "raichur|Raichur",
+        "ramanagara|Ramanagara",
+        "shimoga|Shimoga",
+        "tumkur|Tumkur",
+        "udupi|Udupi",
+        "uttar kannada|Uttar Kannada",
+        "vijayapura|Vijayapura",
+        "yadgir|Yadgir",
+      ];
+    } else if (s7.value === "kerala") {
+      optionArray = [
+        "alappuzha|Alappuzha",
+        "ernakulam|Ernakulam",
+        "idukki|Idukki",
+        "kannur|Kannur",
+        "kasaragod|Kasaragod",
+        "kollam|Kollam",
+        "kottayam|Kottayam",
+        "kozhikode|Kozikode",
+        "malappuram|Malappuram",
+        "palakkad|Palakkad",
+        "pathanamthitta|Pathanamthitta",
+        "thiruvananthapuram|Thiruvananthapuram",
+        "thrissur|Thrissur",
+        "wayanad|Wayanad",
+      ];
+    } else if (s7.value === "ladakh") {
+      optionArray = ["kargil|Kargil", "leh|Leh"];
+    } else if (s7.value === "lakshadweep") {
+      optionArray = ["agatti island|Agatti Island", "lakshadweep|Lakshadweep"];
+    } else if (s7.value === "madhya pradesh") {
+      optionArray = [
+        "agar|Agar",
+        "alirajpur|Alirajpur",
+        "anuppur|Anuppur",
+        "ashoknagar|Ashoknagar",
+        "balaghat|Balaghat",
+        "barwani|Barwani",
+        "betul|Betul",
+        "bhind|Bhind",
+        "bhopal|Bhopal",
+        "burhanpur|Burhanpur",
+        "chhatarpur|Chattarpur",
+        "chhindwara|Chhindwara",
+        "damoh|Damoh",
+        "datia|Datia",
+        "dewas|Dewas",
+        "dhar|Dhar",
+        "dindori|Dindori",
+        "guna|Guna",
+        "gwalior|Gwalior",
+        "harda|Harda",
+        "hoshangabad|Hoshangabad",
+        "indore|Indore",
+        "jabalpur|Jabalpur",
+        "jhabua|Jhabua",
+        "katni|Katni",
+        "khandwa|Khandwa",
+        "khargone|Khargone",
+        "mandla|Mandla",
+        "mandsaur|Mandsaur",
+        "morena|Morena",
+        "narsinghpur|Narsinghpur",
+        "neemuch|Neemuch",
+        "panna|Panna",
+        "raiseb|Raisen",
+        "rajgarh|Rajgarh",
+        "ratlam|Ratlam",
+        "rewa|Rewa",
+        "sagar|Sagar",
+        "satna|Satna",
+        "sehore|Sehore",
+        "seoni|Seoni",
+        "shahdol|Shahdol",
+        "shajapur|Shajapur",
+        "dheopur|Sheopur",
+        "shivpuri|SHivpuri",
+        "sidhi|Sidhi",
+        "singrauli|Singrauli",
+        "tikamgarh|Tikamgarh",
+        "ujjain|Ujjain",
+        "umaria|Umaria",
+        "vidisha|Vidisha",
+      ];
+    } else if (s7.value === "maharashtra") {
+      optionArray = [
+        "ahmednagar|Ahmednagar",
+        "akola|AKola",
+        "amravati|Amravati",
+        "aurangabad|Aurangabad",
+        "beed|Beed",
+        "bhandara|Bhandara",
+        "buldhana|Buldhana",
+        "chandrapur|Chandrapur",
+        "dhule|Dhule",
+        "gadchiroli|Gadchiroli",
+        "gondia|Gondia",
+        "hingoli|Hingoli",
+        "jalgaon|Jalgaon",
+        "jalna|Jalna",
+        "kolhapur|Kolhapur",
+        "latur|Latur",
+        "mumbai|Mumbai",
+        "nagpur|Nagpur",
+        "nanded|Nanded",
+        "nandurbar|Nandurbar",
+        "nashik|Nahsik",
+        "osmanabad|Osmanabad",
+        "palghar|Palghar",
+        "parbhani|Parbhani",
+        "pune|Pune",
+        "rajgad|Rajgad",
+        "ratnagiri|Ratnagiri",
+        "sangli|Sangli",
+        "satara|Satara",
+        "sindhudurg|Sindhudurg",
+        "solapur|Solapur",
+        "thane|Thane",
+        "wardha|Wardha",
+        "washim|Washim",
+        "yavatmal|Yavatmal",
+      ];
+    } else if (s7.value === "manipur") {
+      optionArray = [
+        "bishnupur|Bishnupur",
+        "chandel|Chandel",
+        "churachandpur|Churanchandpur",
+        "imphal east|Imphal East",
+        "imphal west|Imphal West",
+        "jiribam|Jiribam",
+        "kakching|Kakching",
+        "kamjong|Kamjong",
+        "kangpokpi|Kanhpokpi",
+        "noney|Noney",
+        "pherzawl|Pherzawl",
+        "senapati|Senapati",
+        "tamenglong|Tamenglong",
+        "tengnoupal|Tengnoupal",
+        "thoubal|Thoubal",
+        "ukhrul|Ukhrul",
+      ];
+    } else if (s7.value === "meghalaya") {
+      optionArray = [
+        "east garo hills|East Garo Hills",
+        "east jaintia hills|East Jaintia Hills",
+        "east khasi hills|East Khasi Hills",
+        "north garo hills|North Garo Hills",
+        "ri-bhoi|Ri-Bhoi",
+        "south garo hills|SOuth Garo Hills",
+        "south west khasi hills|South West Khasi Hills",
+        "west garo hills|West Garo Hills",
+        "west jaintia hills|West Jaintia Hills",
+        "west khasi hills|West Khasi Hills",
+      ];
+    } else if (s7.value === "mizoram") {
+      optionArray = [
+        "aizawl east|Aizawl East",
+        "aizawl west|Aizawl West",
+        "champhai|Champhai",
+        "kolasib|Kolasib",
+        "lawngtai|Lawngtai",
+        "lunglei|Lunglei",
+        "mamit|Mamit",
+        "serchhip|Serchhip",
+        "siaha|Siaha",
+      ];
+    } else if (s7.value === "nagaland") {
+      optionArray = [
+        "dimapur|Dimapur",
+        "kiphire|Kiphire",
+        "kohima|Kohima",
+        "longleng|Longleng",
+        "mokokchung|Mokokchung",
+        "mon|Mon",
+        "peren|Peren",
+        "phek|Phek",
+        "tuensang|Tuensang",
+        "wokha|Wokha",
+        "zunheboto|Zunheboto",
+      ];
+    } else if (s7.value === "odisha") {
+      optionArray = [
+        "angul|Angul",
+        "balangir|Balangir",
+        "balasore|Balasore",
+        "bargarh|Bargarh",
+        "bhadrak|Bhadrak",
+        "boudh|Boudh",
+        "cuttack|Cuttack",
+        "deogarh|Deogarh",
+        "dhenkanal|Dhenkanal",
+        "gajapati|Gajapati",
+        "ganjam|Ganjam",
+        "jagatsinghpur|Jagatsinghpur",
+        "jajpur|Jajpur",
+        "jharsuguda|Jharsuguda",
+        "kalahandi|Kalahandi",
+        "kandhamal|Kandhamal",
+        "kendrapara|Kendrapara",
+        "kendujhar|Kendujhar",
+        "khurda|Khurda",
+        "koraput|Koraput",
+        "malkangiri|Malkangiri",
+        "mayurbhanj|Mayurbhanj",
+        "nabarangpur|Nabarangpur",
+        "nayagarh|Nayagarh",
+        "nuapada|Nuapada",
+        "puri|Puri",
+        "rayagada|Rayagada",
+        "sambalpur|Sambalpur",
+        "subarnapur|Subarnapur",
+        "sundargarh|Sundargarh",
+      ];
+    } else if (s7.value === "puducherry") {
+      optionArray = [
+        "karaikal|Karaikal",
+        "mahe|Mahe",
+        "puducherry|Puducherry",
+        "yanam|Yanam",
+      ];
+    } else if (s7.value === "punjab") {
+      optionArray = [
+        "amritsar|Amritsar",
+        "barnala|Barnala",
+        "bathinda|Bathinda",
+        "faridkot|Faridkot",
+        "fatehgarh sahib|Fatehgarh Sahib",
+        "fazilka|Fazilka",
+        "ferozpur|Ferozpur",
+        "gurdaspur|Gurdaspur",
+        "hishiarpur|Hoshiarpur",
+        "jalandhar|Jalandhar",
+        "kapurthala|Kapurthala",
+        "ludhiana|Ludhiana",
+        "mansa|mansa",
+        "moga|Moga",
+        "pathankot|Pathankot",
+        "patiala|Patiala",
+        "rup nagar|Rup Nagar",
+        "sangrur|Sangrur",
+        "sas nagar|SAS Nagar",
+        "sbs nagar|SBS Nagar",
+        "sri mukhtsar sahib|Sri Muktsar Sahib",
+        "tarn taran|Tarn Taran",
+      ];
+    } else if (s7.value === "rajasthan") {
+      optionArray = [
+        "ajmer|Ajmer",
+        "alwar|Alwar",
+        "banswara|Banswara",
+        "baran|Baran",
+        "barmer|Barmer",
+        "bharatpur|Bharatpur",
+        "bhilwara|Bhilwara",
+        "bikaner|Bikaner",
+        "bundu|Bundi",
+        "chittorgarh|Chittorgarh",
+        "churu|Churu",
+        "dausa|Dausa",
+        "dholpur|Dholpur",
+        "dungarpur|Dungarpur",
+        "hanumangarh|Hanumangarh",
+        "jaipur I|Jaipur I",
+        "jaipur II|Jaipur II",
+        "jaisalmer|Jaisalmer",
+        "jalore|Jalore",
+        "jhalawar|Jhalawar",
+        "jhunjhunu|Jhunjhunu",
+        "jodhpur|Jodhpur",
+        "karauli|Karauli",
+        "kota|Kota",
+        "nagaur|Nagaur",
+        "pali|Pali",
+        "pratapgarh|Pratapgarh",
+        "rajsamand|Rajsamand",
+        "sawai madhopur|Sawai Madhopur",
+        "sikar|Sikar",
+        "sirohi|Sirohi",
+        "sri ganganagar|Sri Ganganagar",
+        "tonk|Tonk",
+        "udaipur|Udaipur",
+      ];
+    } else if (s7.value === "sikkim") {
+      optionArray = [
+        "east sikkim|East Sikkim",
+        "north sikkim|North Sikkim",
+        "south sikkim|South Sikkim",
+        "west sikkim|West Sikkim",
+      ];
+    } else if (s7.value === "tamil nadu") {
+      optionArray = [
+        "aranthangi|Aranthangi",
+        "ariyalur|Ariyalur",
+        "attur|Attur",
+        "chengalpet|Chengalpet",
+        "chennai|chennai",
+        "cheyyar|Cheyyar",
+        "coimbatore|Coimbatore",
+        "cuddalore|Cuddalore",
+        "dharmapuri|Dharmapuri",
+        "dindigul|DIndigul",
+        "erode|Erode",
+        "kallakurichi|Kallakurichi",
+        "kanchipuram|Kanchipuram",
+        "kanyakumari|Kanyakumari",
+        "karur|Karur",
+        "kovilpatti|Kovilpatti",
+        "krishnagiri|Krishnagiri",
+        "madurai|Madurai",
+        "nagapattinam|Nagapattinam",
+        "namakkal|Namakkal",
+        "nilgiris|Nilgiris",
+        "palani|Palani",
+        "paramakudi|Paramakudi",
+        "perambalur|Perambalur",
+        "poonamallee|Poonamallee",
+        "pudukkottai|Pudukkottai",
+        "ramanathapuram|Ramanathapuram",
+        "ranipet|Ranipet",
+        "salem|Salem",
+        "sivaganga|Sivaganga",
+        "sivakasi|Sivakasi",
+        "tenkasi|Tenkasi",
+        "thanjavur|Thanjavur",
+        "theni|Theni",
+        "thoothukudi(tuticorin)|Thoothukudi(Tuticorin)",
+        "tiruchirappalli|Tiruchirappalli",
+        "tirunelvelli|Tirunelvelli",
+        "tirupattur|Tirupattur",
+        "tiruppur|Tiruppur",
+        "tiruvaluur|Tiruvallur",
+        "tiruvannamalai|Tiruvannamalai",
+        "tiruvarur|Tiruvarur",
+        "vellore|Vellore",
+        "viluppuram|Viluppuram",
+        "virudhunagar|Virudhunagar",
+      ];
+    } else if (s7.value === "telangana") {
+      optionArray = [
+        "adilabad|Adilabad",
+        "bhadradri kothagudem|Bhadradi Kothagudem",
+        "hyderabad|Hyderabad",
+        "jagtial|Jagtial",
+        "jangaon|Jangaon",
+        "jayashankar bhupalpally|Jayashankar Bhupalpally",
+        "jogulamba gadwal|Jogulamba Gadwal",
+        "kamareddy|Kamareddy",
+        "karimnagar|Karimnagar",
+        "khammam|Khammam",
+        "kumuram bheem|Kumuram Bheem",
+        "mahbubabad|Mahabubabad",
+        "mahabubnagar|mahabubnagar",
+        "mancherial|Mancherial",
+        "medak|Medak",
+        "medchal|Medchal",
+        "mulugu|Mulugu",
+        "nagarkurnool|Nagarkurnool",
+        "nalgonda|Nalgonda",
+        "narayanpet|Narayanpet",
+        "nirmal|Nirmal",
+        "nizamabad|Nizamabad",
+        "peddapalli|Peddapalli",
+        "rajanna sircilla|Rajanna Sircilla",
+        "rangareddy|Rangareddy",
+        "sangareddy|Sangareddy",
+        "siddipet|Siddipet",
+        "suryapet|Suryapet",
+        "vikarabad|Vikarabad",
+        "wanaparthy|Wanaparthy",
+        "warangal(rural)|Warangal(Rural)",
+        "warangal(urban)|Warangal(Urban)",
+        "yadadri bhuvanagiri|Yadadri Bhuvanagiri",
+      ];
+    } else if (s7.value === "tripura") {
+      optionArray = [
+        "dhalai|Dhalai",
+        "gomati|Gomati",
+        "khowai|Khowai",
+        "north tripura|North Tripura",
+        "sepahijala|Sepahijala",
+        "south tripura|South Tripura",
+        "unakoti|Unakoti",
+        "west tripura|West Tripura",
+      ];
+    } else if (s7.value === "uttar pradesh") {
+      optionArray = [
+        "agra|Agra",
+        "aligarh|Aligarh",
+        "ambedkar nagar|Ambedkar Nagar",
+        "amethi|Amethi",
+        "amroha|Amroha",
+        "auraiya|Auraiya",
+        "ayodhya|Ayodhya",
+        "azamgarh|Azamgarh",
+        "badaun|Badaun",
+        "baghpat|Baghpat",
+        "bahraich|Bahraich",
+        "balarampur|Balarampur",
+        "ballia|Ballia",
+        "banda|Banda",
+        "barabanki|Barabanki",
+        "bareilly|Bareilly",
+        "basti|Basti",
+        "bhadohi|Bhadohi",
+        "bijnour|Bijnour",
+        "bulandshahr|Bulandshahr",
+        "chandauli|Chandauli",
+        "chitrakoot|Chitrakoot",
+        "deoria|Deoria",
+        "etah|Etah",
+        "etawah|Etawah",
+        "farrukhabad|Farrukhabad",
+        "fatehpur|Fatehpur",
+        "firozabad|Firozabad",
+        "gautam buddha nagar|Gautam Buddha Nagar",
+        "ghaziabad|Ghaziabad",
+        "ghazipur|Ghazipur",
+        "gonda|Gonda",
+        "gorakhpur|Gorakhpur",
+        "hamirpur|Hamirpur",
+        "hapur|Hapur",
+        "hardoi|Hardoi",
+        "hathras|Hathras",
+        "jalaun|Jalaun",
+        "jaunpur|Jaunpur",
+        "jhansi|Jhansi",
+        "kannauj|Kannauj",
+        "kanpur dehat|Kanpur Dehat",
+        "kanpur nagar|Kanpur Nagar",
+        "kasganj|Kasganj",
+        "kaushambi|Kaushambi",
+        "kushinagar|Kushinagar",
+        "lakhimpur kheri|Lakhimpur Kheri",
+        "lalitpur|Lalitpur",
+        "lucknow|Lucknow",
+        "maharajganj|Maharajganj",
+        "mahoba|Mahoba",
+        "mainpuri|Mainpuri",
+        "mathura|mathura",
+        "mau|Mau",
+        "meerut|Meerut",
+        "mirzapur|Mirzapur",
+        "moradabad|Moradabad",
+        "muzaffarnagar|Muzaffarnagar",
+        "pilibhit|Pilibhit",
+        "pratapgarh|Pratapgarh",
+        "prayagraj|Prayagraj",
+        "raebareli|Raebareli",
+        "rampur|Rampur",
+        "saharanpur|Saharanpur",
+        "sambhal|Sambhal",
+        "sant kabir nagar|Sant Kabir Nagar",
+        "shahjahanpur|Shahjahanpur",
+        "shamli|Shamli",
+        "shravasti|Shravasti",
+        "siddharthnagar|Siddharthnagar",
+        "sitapur|Sitapur",
+        "sonbhadra|Sonbhadra",
+        "sultanpur|Sultanpur",
+        "unnao|Unnao",
+        "varanasi|Varnasi",
+      ];
+    } else if (s7.value === "uttarakhand") {
+      optionArray = [
+        "almora|Almora",
+        "bageshwar|Bageshwar",
+        "chamoli|Chamoli",
+        "champawat|Champawat",
+        "dehradun|Dehradun",
+        "haridwar|Haridwar",
+        "nainital|Nainital",
+        "pauri garhwal|Pauri Garhwal",
+        "pithoragarh|Pithoragarh",
+        "rudraprayag|Rudraprayag",
+        "tehri garhwal|Tehri Garhwal",
+        "udha, dingh nagar|Udham Singh Nagar",
+        "uttarkashi|Uttarkashi",
+      ];
+    } else if (s7.value === "west bengal") {
+      optionArray = [
+        "alipurduar district|Alipurduar District",
+        "bankura|Bankura",
+        "basirhat hd(north 24 parganas)|Basirhat HD(North 24 Pargana)",
+        "birbhum|Birbhum",
+        "bishnupur hd(bankura)|Bishnupur HD(Bankura)",
+        "coochbehar|Coochbehar",
+        "dakshin dinajpur|Dakshin DInajpur",
+        "darjeeling|Darjeeling",
+        "diamond harbor hd(south 24 pargana)|Diamond Harbor HD(South 24 Pargana)",
+        "east bardhaman|East Bardhaman",
+        "hoogly|Hoogly",
+        "howrah|Howrah",
+        "jalpaiguri|Jalpaiguri",
+        "jhargram|Jhargram",
+        "kalimpong|Kalimpong",
+        "kolkata|Kolkata",
+        "malda|Malda",
+        "murshidabad|Murshidabad",
+        "nadia|Nadia",
+        "nandigram hd(east medinipore)|Nandigram HD(East Medinipore)",
+        "north 24 parganas|North 24 Parganas",
+        "paschim medinipore|Paschim MEdinipore",
+        "purba medinipore|Purba Medinipore",
+        "purulia|Purulia",
+        "rampurhat hd(birbhum)|Rampurhat HD(Birbhum)",
+        "south 24 parganas|South 24 Parganas",
+        "uttar dinajpur|Uttar Dinajpur",
+        "west bardhaman|West Bardhaman",
+      ];
+    }
+    let District = [];
+    for (let option in optionArray) {
+      var pair = optionArray[option].split("|");
+      District.push(pair);
+    }
+    if (forWhat === 1) {
+      setDistrict(District);
+    } else {
+      setDeceasedDistrict(District);
+    }
+  }
+
   const handleApplicantInput = (e) => {
     setApplicantField({ ...applicantField, [e.target.name]: e.target.value });
+    if (e.target.name === "state") populate(e.target.value, 1);
   };
 
   const handleDeceasedInput = (e) => {
     setDeceasedField({ ...deceasedField, [e.target.name]: e.target.value });
+    if (e.target.name === "deceasedstate") populate(e.target.value, 2);
   };
 
   // Form Data Submission
@@ -204,7 +1078,7 @@ export default function DeceasedForm() {
           }, 2000);
         }
       } else {
-        alert("Something is wrong in form details, please look up!");
+        alert("Please Enter the required field(s)");
       }
     } catch (error) {
       return alert(error.message);
@@ -503,8 +1377,6 @@ export default function DeceasedForm() {
     setCaptchaValue(value);
     console.log("Captcha value:", value);
   }
-  // console.log(applicantField);
-  // console.log(deceasedField);
   return (
     <>
       {/* <FormNav /> */}
@@ -549,7 +1421,7 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Applicant's Name
-                    <sup style={{ color: "rgb(255, 8, 8)" }}>*</sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}>*</span>
                   </Form.Label>
                 </Col>
                 <Col xs={3}>
@@ -557,7 +1429,6 @@ export default function DeceasedForm() {
                     type="text"
                     name="firstname"
                     value={user.firstname}
-                    required
                     disabled
                   />
                 </Col>
@@ -578,15 +1449,11 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Applicant Gender
-                    <sup style={{ color: "rgb(255, 8, 8)" }}>*</sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}>*</span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
-                  <Form.Select
-                    name="gender"
-                    onChange={handleApplicantInput}
-                    required
-                  >
+                  <Form.Select name="gender" onChange={handleApplicantInput}>
                     <option value="null">Choose Gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -606,7 +1473,7 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Mobile Number
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}>*</span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
@@ -616,7 +1483,6 @@ export default function DeceasedForm() {
                     name="mobile"
                     value={user.mobile}
                     disabled
-                    required
                   />
                 </Col>
                 <Col xs={3}></Col>
@@ -644,6 +1510,41 @@ export default function DeceasedForm() {
                 <Col xs={3}></Col>
               </Row>
             </Form.Group>
+            <Form.Group className="mb-3">
+              <Row>
+                <Col xs={3}>
+                  {" "}
+                  <Form.Label>Upload PAN Card</Form.Label>
+                </Col>
+                <Col xs={5}>
+                  <Form.Control
+                    type="file"
+                    name="applicantPanCard"
+                    accept="image/*"
+                    onChange={handleFileValidation}
+                  />
+                </Col>
+                <Col xs={3}>
+                  {uploadingFile && field === "applicantPanCard" ? (
+                    <Spinner
+                      animation="border"
+                      variant="primary mt-0 text-center"
+                    />
+                  ) : (
+                    <Button variant="primary" onClick={uploadFile}>
+                      Upload
+                    </Button>
+                  )}
+                </Col>
+                <Col xs={1}>
+                  {Files.applicantPanCard !== "" && (
+                    <a href={Files.applicantPanCard} target ="_blank">
+                      <h5 className="mt-2">View...</h5>
+                    </a>
+                  )}
+                </Col>
+              </Row>
+            </Form.Group>
 
             <Form.Group className="mb-3">
               <Row>
@@ -666,7 +1567,41 @@ export default function DeceasedForm() {
                 <Col xs={3}></Col>
               </Row>
             </Form.Group>
-
+            <Form.Group className="mb-3">
+              <Row>
+                <Col xs={3}>
+                  {" "}
+                  <Form.Label>Upload Aadhar</Form.Label>
+                </Col>
+                <Col xs={5}>
+                  <Form.Control
+                    type="file"
+                    name="applicantAadhar"
+                    accept="image/*"
+                    onChange={handleFileValidation}
+                  />
+                </Col>
+                <Col xs={3}>
+                  {uploadingFile && field === "applicantAadhar" ? (
+                    <Spinner
+                      animation="border"
+                      variant="primary mt-0 text-center"
+                    />
+                  ) : (
+                    <Button variant="primary" onClick={uploadFile}>
+                      Upload
+                    </Button>
+                  )}
+                </Col>
+                <Col xs={1}>
+                  {Files.applicantAadhar !== "" && (
+                    <a href={Files.applicantAadhar} target ="_blank">
+                      <h5 className="mt-2">View...</h5>
+                    </a>
+                  )}
+                </Col>
+              </Row>
+            </Form.Group>
             <Form.Group className="mb-3">
               <Row>
                 <Col xs={3}>
@@ -691,17 +1626,62 @@ export default function DeceasedForm() {
               <Row>
                 <Col xs={3}>
                   <Form.Label>
-                    State<sup style={{ color: "rgb(255, 8, 8)" }}>* </sup>
+                    State<span style={{ color: "rgb(255, 8, 8)" }}>*</span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
-                  <Form.Select
-                    name="state"
-                    onChange={handleApplicantInput}
-                    required
-                  >
+                  <Form.Select name="state" onChange={handleApplicantInput}>
                     <option value="null">SELECT STATE</option>
-                    <option value="assam">ASSAM</option>
+                    <option>Select State</option>
+                    <option value="andaman and nicobar islands">
+                      {" "}
+                      ANDAMAN AND NICOBAR ISLANDS
+                    </option>
+                    <option value="andhra pradesh"> ANDHRA PRADESH</option>
+                    <option value="arunachal pradesh">
+                      {" "}
+                      ARUNACHAL PRADESH
+                    </option>
+                    <option value="assam"> ASSAM</option>
+                    <option value="bihar"> BIHAR</option>
+                    <option value="chandigarh"> CHANDIGARH</option>
+                    <option value="chattisgarh"> CHATTISGARH</option>
+                    <option value="dadra and nagar haveli">
+                      {" "}
+                      DADRA AND NAGAR HAVELI
+                    </option>
+                    <option value="daman and diu"> DAMAN AND DIU</option>
+                    <option value="delhi"> DELHI</option>
+                    <option value="goa"> GOA</option>
+                    <option value="gujarat"> GUJARAT</option>
+                    <option value="haryana"> HARYANA</option>
+                    <option value="himachal pradesh"> HIMACHAL PRADESH</option>
+                    <option value="jammu and kashmir">
+                      {" "}
+                      JAMMU AND KASHMIR
+                    </option>
+                    <option value="jharkhand"> JHARKHAND</option>
+                    <option value="karnataka"> KARNATAKA</option>
+                    <option value="kerala"> KERALA</option>
+                    <option value="ladakh"> LADAKH</option>
+                    <option value="lakshadweep"> LAKSHADWEEP</option>
+                    <option value="madhya pradesh"> MADHYA PRADESH</option>
+                    <option value="maharashtra"> MAHARASHTRA</option>
+                    <option value="manipur"> MANIPUR</option>
+                    <option value="meghalaya"> MEGHALAYA</option>
+                    <option value="mizoram">MIZORAM</option>
+                    <option value="nagaland"> NAGALAND</option>
+                    <option value="odisha"> ODISHA</option>
+                    <option value="puducherry">PUDUCHERRY </option>
+                    <option value="punjab"> PUNJAB</option>
+                    <option value="rajasthan"> RAJASTHAN</option>
+                    <option value="sikkim"> SIKKIM</option>
+                    <option value="tamil nadu"> TAMIL NADU</option>
+                    <option value="telangana"> TELANGANA</option>
+                    <option value="tripura"> TRIPURA</option>
+                    <option value="uttar pradesh"> UTTAR PRADESH</option>
+                    <option value="uttarakhand"> UTTARAKHAND</option>
+                    <option value="west bengal">WEST BENGAL</option>
                   </Form.Select>
                   <span style={{ color: "red" }}>
                     {applicantFormErrors.state}
@@ -716,59 +1696,17 @@ export default function DeceasedForm() {
               <Row>
                 <Col xs={3}>
                   <Form.Label>
-                    District<sup style={{ color: "rgb(255, 8, 8)" }}>* </sup>
+                    District<span style={{ color: "rgb(255, 8, 8)" }}>*</span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
-                  <Form.Select
-                    name="district"
-                    onChange={handleApplicantInput}
-                    required
-                  >
-                    <option value="null">Choose District</option>
-
-                    {applicantField.state === "assam" && (
-                      <>
-                        <option value="baksa">Baksa</option>
-                        <option value="barpeta">Barpeta</option>
-                        <option value="biswanath">Biswanath</option>
-                        <option value="bongaigaon">Bongaigaon</option>
-                        <option value="cachar">Cachar</option>
-                        <option value="charaideo">Charaideo</option>
-                        <option value="chirang">Chirang</option>
-                        <option value="daranng">Daranng</option>
-                        <option value="dhemaji">Dhemaji</option>
-                        <option value="dhubri">Dhubri</option>
-                        <option value="dibrugarh">Dibrugarh</option>
-                        <option value="dima hasao">Dima Hasao</option>
-                        <option value="goalpara">Goalpara</option>
-                        <option value="hailankandi">Hailankandi</option>
-                        <option value="hojai">Hojai</option>
-                        <option value="jorhat">Jorhat</option>
-                        <option value="kamrup metropolitan">
-                          Kamrup Metropolitan
-                        </option>
-                        <option value="kamrup rural">Kamrup Rural</option>
-                        <option value="karbi anglong">Karbi Anglong</option>
-                        <option value="karimganj">Karimganj</option>
-                        <option value="kokrajhar">Kokrajhar</option>
-                        <option value="lakhimpur">Lakhimpur</option>
-                        <option value="majuli">Majuli</option>
-                        <option value="morigaon">Morigaon</option>
-                        <option value="nagaon">Nagaon</option>
-                        <option value="nalbari">Nalbari</option>
-                        <option value="sivasagar">Sivasagar</option>
-                        <option value="sonitpur">Sonitpur</option>
-                        <option value="south salmara mankachar">
-                          South Salmara Mankachar
-                        </option>
-                        <option value="tinsukia">Tinsukia</option>
-                        <option value="udalguri">Udalguri</option>
-                        <option value="west karbi anglong">
-                          West Karbi Anglong
-                        </option>
-                      </>
-                    )}
+                  <Form.Select name="district" onChange={handleApplicantInput}>
+                    <option value="">Select District</option>
+                    {district.map((item, index) => (
+                      <option key={item[0]} value={item[0]}>
+                        {item[1]}
+                      </option>
+                    ))}
                   </Form.Select>
                   <span style={{ color: "red" }}>
                     {applicantFormErrors.district}
@@ -784,7 +1722,7 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Sub-Division
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}>*</span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
@@ -793,7 +1731,6 @@ export default function DeceasedForm() {
                     placeholder="(Sub-division)"
                     name="subdivision"
                     onChange={handleApplicantInput}
-                    required
                     value={applicantField.subdivision}
                   />
                   <span style={{ color: "red" }}>
@@ -810,7 +1747,7 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Circle Office
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}>*</span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
@@ -819,7 +1756,6 @@ export default function DeceasedForm() {
                     placeholder="(Circle Office)"
                     name="circleoffice"
                     onChange={handleApplicantInput}
-                    required
                     value={applicantField.circleoffice}
                   />
                   <span style={{ color: "red" }}>
@@ -845,8 +1781,8 @@ export default function DeceasedForm() {
               <Row>
                 <Col xs={3}>
                   <Form.Label>
-                    Aadhar card Number of the deceased{" "}
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    Aadhar card Number of the deceased
+                    <span style={{ color: "rgb(255, 8, 8)" }}>*</span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
@@ -856,7 +1792,6 @@ export default function DeceasedForm() {
                     maxLength="14"
                     name="aadhar"
                     onChange={handleDeceasedInput}
-                    required
                   />
                   <span style={{ color: "red" }}>
                     {deceasedFormErrors.aadhar}
@@ -869,9 +1804,44 @@ export default function DeceasedForm() {
             <Form.Group className="mb-3">
               <Row>
                 <Col xs={3}>
+                  {" "}
+                  <Form.Label>Upload Aadhar</Form.Label>
+                </Col>
+                <Col xs={5}>
+                  <Form.Control
+                    type="file"
+                    name="deceasedAadhar"
+                    accept="image/*"
+                    onChange={handleFileValidation}
+                  />
+                </Col>
+                <Col xs={3}>
+                  {uploadingFile && field === "deceasedAadhar" ? (
+                    <Spinner
+                      animation="border"
+                      variant="primary mt-0 text-center"
+                    />
+                  ) : (
+                    <Button variant="primary" onClick={uploadFile}>
+                      Upload
+                    </Button>
+                  )}
+                </Col>
+                <Col xs={1}>
+                  {Files.deceasedAadhar !== "" && (
+                    <a href={Files.deceasedAadhar} target ="_blank">
+                      <h5 className="mt-2">View...</h5>
+                    </a>
+                  )}
+                </Col>
+              </Row>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Row>
+                <Col xs={3}>
                   <Form.Label>
-                    Date of Death:
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    Date of Death
+                    <span style={{ color: "rgb(255, 8, 8)" }}> * </span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
@@ -881,7 +1851,6 @@ export default function DeceasedForm() {
                     format="dd/mm/yyyy"
                     max={new Date().toJSON().slice(0, 10)}
                     onChange={handleDeceasedInput}
-                    required
                   />
                 </Col>
                 <Col xs={3}></Col>
@@ -891,8 +1860,8 @@ export default function DeceasedForm() {
               <Row>
                 <Col xs={3}>
                   <Form.Label>
-                    Name of Deceased:
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    Name of Deceased
+                    <span style={{ color: "rgb(255, 8, 8)" }}>*</span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
@@ -901,7 +1870,6 @@ export default function DeceasedForm() {
                     placeholder="(In English)"
                     name="deadname"
                     onChange={handleDeceasedInput}
-                    required
                   />
                   <span style={{ color: "red" }}>
                     {deceasedFormErrors.deadname}
@@ -916,15 +1884,11 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Gender of Deceased
-                    <sup style={{ color: "rgb(255, 8, 8)" }}>*</sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}>*</span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
-                  <Form.Select
-                    name="gender"
-                    onChange={handleDeceasedInput}
-                    required
-                  >
+                  <Form.Select name="gender" onChange={handleDeceasedInput}>
                     <option value="null">Choose Gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -1003,7 +1967,7 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Age of Deceased [on January 1 of the current calender]
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}> * </span>
                   </Form.Label>
                 </Col>
                 <Col xs={3}>
@@ -1014,7 +1978,6 @@ export default function DeceasedForm() {
                     // min={0}
                     // max={200}
                     onChange={handleDeceasedInput}
-                    required
                   />
                   <span style={{ color: "red" }}>{deceasedFormErrors.age}</span>
                 </Col>
@@ -1027,14 +1990,13 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Place of Death
-                    <sup style={{ color: "rgb(255, 8, 8)" }}>*</sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}>*</span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
                   <Form.Select
                     name="placeOfDeath"
                     onChange={handleDeceasedInput}
-                    required
                   >
                     <option value="null">Select</option>
                     <option value="Hospital">Hospital</option>
@@ -1055,7 +2017,7 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Place Details (Name or Address)
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}> * </span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
@@ -1064,7 +2026,6 @@ export default function DeceasedForm() {
                     placeholder="(In English)"
                     name="placedetails"
                     onChange={handleDeceasedInput}
-                    required
                   />
                 </Col>
                 <Col xs={3}></Col>
@@ -1113,7 +2074,7 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Deceased Town/Village Name:
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}> * </span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
@@ -1122,7 +2083,6 @@ export default function DeceasedForm() {
                     placeholder="(In English)"
                     name="torvName"
                     onChange={handleDeceasedInput}
-                    required
                   />
                 </Col>
                 <Col xs={3}></Col>
@@ -1133,14 +2093,13 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Is it Town/Village
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}> * </span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
                   <Form.Select
                     name="townOrVillage"
                     onChange={handleDeceasedInput}
-                    required
                   >
                     <option value="null">Select</option>
                     <option value="Town">Town</option>
@@ -1159,17 +2118,64 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Deceased State
-                    <sup style={{ color: "rgb(255, 8, 8)" }}>* </sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}>* </span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
                   <Form.Select
                     name="deceasedstate"
                     onChange={handleDeceasedInput}
-                    required
                   >
-                    <option value="null">SELECT STATE</option>
+                    <option>Select State</option>
+                    <option value="andaman and nicobar islands">
+                      {" "}
+                      ANDAMAN AND NICOBAR ISLANDS
+                    </option>
+                    <option value="andhra pradesh"> ANDHRA PRADESH</option>
+                    <option value="arunachal pradesh">
+                      {" "}
+                      ARUNACHAL PRADESH
+                    </option>
                     <option value="assam"> ASSAM</option>
+                    <option value="bihar"> BIHAR</option>
+                    <option value="chandigarh"> CHANDIGARH</option>
+                    <option value="chattisgarh"> CHATTISGARH</option>
+                    <option value="dadra and nagar haveli">
+                      {" "}
+                      DADRA AND NAGAR HAVELI
+                    </option>
+                    <option value="daman and diu"> DAMAN AND DIU</option>
+                    <option value="delhi"> DELHI</option>
+                    <option value="goa"> GOA</option>
+                    <option value="gujarat"> GUJARAT</option>
+                    <option value="haryana"> HARYANA</option>
+                    <option value="himachal pradesh"> HIMACHAL PRADESH</option>
+                    <option value="jammu and kashmir">
+                      {" "}
+                      JAMMU AND KASHMIR
+                    </option>
+                    <option value="jharkhand"> JHARKHAND</option>
+                    <option value="karnataka"> KARNATAKA</option>
+                    <option value="kerala"> KERALA</option>
+                    <option value="ladakh"> LADAKH</option>
+                    <option value="lakshadweep"> LAKSHADWEEP</option>
+                    <option value="madhya pradesh"> MADHYA PRADESH</option>
+                    <option value="maharashtra"> MAHARASHTRA</option>
+                    <option value="manipur"> MANIPUR</option>
+                    <option value="meghalaya"> MEGHALAYA</option>
+                    <option value="mizoram">MIZORAM</option>
+                    <option value="nagaland"> NAGALAND</option>
+                    <option value="odisha"> ODISHA</option>
+                    <option value="puducherry">PUDUCHERRY </option>
+                    <option value="punjab"> PUNJAB</option>
+                    <option value="rajasthan"> RAJASTHAN</option>
+                    <option value="sikkim"> SIKKIM</option>
+                    <option value="tamil nadu"> TAMIL NADU</option>
+                    <option value="telangana"> TELANGANA</option>
+                    <option value="tripura"> TRIPURA</option>
+                    <option value="uttar pradesh"> UTTAR PRADESH</option>
+                    <option value="uttarakhand"> UTTARAKHAND</option>
+                    <option value="west bengal">WEST BENGAL</option>
                   </Form.Select>
                   <span style={{ color: "red" }}>
                     {deceasedFormErrors.deceasedstate}
@@ -1184,54 +2190,17 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Deceased District
-                    <sup style={{ color: "rgb(255, 8, 8)" }}>* </sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}>* </span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
                   <Form.Select name="district" onChange={handleDeceasedInput}>
                     <option value="null">Choose District</option>
-                    {deceasedField.deceasedstate === "assam" && (
-                      <>
-                        <option value="baksa">Baksa</option>
-                        <option value="barpeta">Barpeta</option>
-                        <option value="biswanath">Biswanath</option>
-                        <option value="bongaigaon">Bongaigaon</option>
-                        <option value="cachar">Cachar</option>
-                        <option value="charaideo">Charaideo</option>
-                        <option value="chirang">Chirang</option>
-                        <option value="daranng">Daranng</option>
-                        <option value="dhemaji">Dhemaji</option>
-                        <option value="dhubri">Dhubri</option>
-                        <option value="dibrugarh">Dibrugarh</option>
-                        <option value="dima hasao">Dima Hasao</option>
-                        <option value="goalpara">Goalpara</option>
-                        <option value="hailankandi">Hailankandi</option>
-                        <option value="hojai">Hojai</option>
-                        <option value="jorhat">Jorhat</option>
-                        <option value="kamrup metropolitan">
-                          Kamrup Metropolitan
-                        </option>
-                        <option value="kamrup rural">Kamrup Rural</option>
-                        <option value="karbi anglong">Karbi Anglong</option>
-                        <option value="karimganj">Karimganj</option>
-                        <option value="kokrajhar">Kokrajhar</option>
-                        <option value="lakhimpur">Lakhimpur</option>
-                        <option value="majuli">Majuli</option>
-                        <option value="morigaon">Morigaon</option>
-                        <option value="nagaon">Nagaon</option>
-                        <option value="nalbari">Nalbari</option>
-                        <option value="sivasagar">Sivasagar</option>
-                        <option value="sonitpur">Sonitpur</option>
-                        <option value="south salmara mankachar">
-                          South Salmara Mankachar
-                        </option>
-                        <option value="tinsukia">Tinsukia</option>
-                        <option value="udalguri">Udalguri</option>
-                        <option value="west karbi anglong">
-                          West Karbi Anglong
-                        </option>
-                      </>
-                    )}
+                    {deceasedDistrict.map((item, index) => (
+                      <option key={item[0]} value={item[0]}>
+                        {item[1]}
+                      </option>
+                    ))}
                   </Form.Select>
                   <span style={{ color: "red" }}>
                     {deceasedFormErrors.district}
@@ -1247,7 +2216,7 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Deceased Address at the time of Death
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}> * </span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
@@ -1257,7 +2226,6 @@ export default function DeceasedForm() {
                     placeholder="(In English)"
                     name="addressAtDead"
                     onChange={handleDeceasedInput}
-                    required
                   />
                 </Col>
                 <Col xs={3}></Col>
@@ -1268,7 +2236,7 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Deceased Permanent Address:
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}> * </span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
@@ -1278,7 +2246,6 @@ export default function DeceasedForm() {
                     placeholder="(In English)"
                     name="addressPermanent"
                     onChange={handleDeceasedInput}
-                    required
                   />
                 </Col>
                 <Col xs={3}></Col>
@@ -1290,15 +2257,11 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Deceased Religion
-                    <sup style={{ color: "rgb(255, 8, 8)" }}>*</sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}>*</span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
-                  <Form.Select
-                    name="religion"
-                    onChange={handleDeceasedInput}
-                    required
-                  >
+                  <Form.Select name="religion" onChange={handleDeceasedInput}>
                     <option value="null">Select</option>
                     <option value="Hindu">Hindu</option>
                     <option value="Muslim">Muslim</option>
@@ -1319,7 +2282,7 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Deceased Occupation
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}> * </span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
@@ -1328,7 +2291,6 @@ export default function DeceasedForm() {
                     placeholder="(In English)"
                     name="occupation"
                     onChange={handleDeceasedInput}
-                    required
                   />
                   <span style={{ color: "red" }}>
                     {deceasedFormErrors.occupation}
@@ -1343,14 +2305,13 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Type of Medical Attention received before death
-                    <sup style={{ color: "rgb(255, 8, 8)" }}>*</sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}>*</span>
                   </Form.Label>
                 </Col>
                 <Col xs={3}>
                   <Form.Select
                     name="typeOfMedicalAttention"
                     onChange={handleDeceasedInput}
-                    required
                   >
                     <option value="null">Select</option>
                     <option value="Institutional">Institutional</option>
@@ -1373,7 +2334,7 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Death Cause Medically Certified
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}> * </span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
@@ -1405,16 +2366,12 @@ export default function DeceasedForm() {
               <Row>
                 <Col xs={3}>
                   <Form.Label>
-                    cause of Death
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    Cause of Death
+                    <span style={{ color: "rgb(255, 8, 8)" }}> * </span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
-                  <Form.Select
-                    name="disease"
-                    onChange={handleDeceasedInput}
-                    required
-                  >
+                  <Form.Select name="disease" onChange={handleDeceasedInput}>
                     <option value="null">Select</option>
                     <option value="COVID-19">COVID-19</option>
                     <option value="Cancer">Cancer</option>
@@ -1426,10 +2383,8 @@ export default function DeceasedForm() {
                     <option value="Accident">Accident</option>
                     <option value="Suicide">Suicide</option>
                     <option value="Narcotics">Narcotics</option>
-                    <option value="Heart  Attack">Heart  Attack</option>
-                    <option value="other">
-                      others
-                    </option>
+                    <option value="Heart  Attack">Heart Attack</option>
+                    <option value="other">others</option>
                   </Form.Select>
                 </Col>
                 <Col xs={3}></Col>
@@ -1567,7 +2522,7 @@ export default function DeceasedForm() {
                 <Col xs={3}>
                   <Form.Label>
                     Signature of the Applicant
-                    <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    <span style={{ color: "rgb(255, 8, 8)" }}> * </span>
                   </Form.Label>
                 </Col>
                 <Col xs={5}>
@@ -1730,11 +2685,12 @@ export default function DeceasedForm() {
               <Row>
                 <Col xs={3}>
                   <Form.Label>
-                    Location <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    Location{" "}
+                    <span style={{ color: "rgb(255, 8, 8)" }}> * </span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>
-                  <Form.Control type="text" placeholder="Location" required />
+                  <Form.Control type="text" placeholder="Location" />
                 </Col>
                 <Col xs={3}></Col>
               </Row>
@@ -1744,7 +2700,7 @@ export default function DeceasedForm() {
               <Row>
                 <Col xs={3}>
                   <Form.Label>
-                    Date <sup style={{ color: "rgb(255, 8, 8)" }}> * </sup>
+                    Date <span style={{ color: "rgb(255, 8, 8)" }}> * </span>
                   </Form.Label>
                 </Col>
                 <Col xs={6}>

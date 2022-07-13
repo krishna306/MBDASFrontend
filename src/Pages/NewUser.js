@@ -100,14 +100,15 @@ function NewUser() {
                   marginBottom: "15px",
                 }}
               >
-                Sign Up
+
+              {(user && user.role === "admin") ? ("Add New Admin"):("Sign Up")}
               </h3>
 
               <div>
                 <Container fluid>
                   <Row>
                     <Col>
-                      <Form.Label>First Name</Form.Label>
+                      <Form.Label>First Name<span style={{ color: "rgb(255, 8, 8)" }}>*</span></Form.Label>
                     </Col>
                     <Col>
                       <Form.Label>Last Name</Form.Label>
@@ -144,7 +145,7 @@ function NewUser() {
                   </Row>
 
                   <Row>
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label>Email<span style={{ color: "rgb(255, 8, 8)" }}>*</span></Form.Label>
                   </Row>
                   <Row>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -165,7 +166,7 @@ function NewUser() {
                     </Form.Group>
                   </Row>
                   <Row>
-                    <Form.Label>Mobile Number</Form.Label>
+                    <Form.Label>Mobile Number<span style={{ color: "rgb(255, 8, 8)" }}>*</span></Form.Label>
                   </Row>
                   <Row>
                     <Form.Group className="mb-3" controlId="formBasicText">
@@ -195,7 +196,7 @@ function NewUser() {
                     </Form.Control.Feedback>
                   </Row>
                   <Row>
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Password<span style={{ color: "rgb(255, 8, 8)" }}>*</span></Form.Label>
                   </Row>
                   <Row>
                     <Form.Group
@@ -232,7 +233,7 @@ function NewUser() {
                     </Form.Group>
                   </Row>
                   <Row>
-                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Label>Confirm Password<span style={{ color: "rgb(255, 8, 8)" }}>*</span></Form.Label>
                   </Row>
                   <Row>
                     <Form.Group

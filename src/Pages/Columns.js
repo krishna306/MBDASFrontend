@@ -2,16 +2,19 @@ import filterFactory, {
     textFilter,
     selectFilter,
     numberFilter,
+    Comparator
   } from "react-bootstrap-table2-filter";
   const customTotal = (from, to, size) => (
-    <span className="react-bootstrap-table-pagination-total">
+    <span className="react-bootstrap-table-pagination-total ml-2">
+      <strong>
       Showing {from} to {to} of {size} Results
+      </strong>
     </span>
   );
   const genderOptions = {
-    male: "male",
-    female: "female",
-    other: "others",
+    male: "Male",
+    female: "Female",
+    other: "Other",
   };
   const placeOfDeathOptions = {
     Home: "Home",
@@ -48,7 +51,7 @@ const columns = [
         return {
           paddingLeft: "10px",
           paddingRight: "10px",
-          whiteSpace: "nowrap",
+          // whiteSpace: "nowrap",
         };
       },
       formatter: (cell) => {
@@ -82,10 +85,13 @@ const columns = [
       sort: true,
       filter: numberFilter({
         placeholder: "Enter Age",
+        comparators:["Select Constraint",Comparator.EQ,Comparator.NE, Comparator.GT,Comparator.LT,Comparator.GE,Comparator.LE,],
+        defaultValue :{Comparator:"Select Constraint"},
+        withoutEmptyComparatorOption:true
 
       }),
       headerStyle: () => {
-        return { paddingLeft: "15px", paddingRight: "15px" };
+        return { paddingLeft: "10px", paddingRight: "10px" };
       },
     },
     {
@@ -132,6 +138,7 @@ const columns = [
         return {
           paddingLeft: "25px",
           paddingRight: "25px",
+          // whiteSpace: "nowrap",
         };
       },
     },
@@ -140,7 +147,10 @@ const columns = [
       text: "Habitual Drinker(Years)",
       sort: true,
       filter: numberFilter({
-        placeholder: "Enter Year",
+        placeholder: "Enter No. of Years",
+        comparators:["Select Constraint",Comparator.EQ,Comparator.NE, Comparator.GT,Comparator.LT,Comparator.GE,Comparator.LE,],
+        defaultValue :{Comparator:"Select Constraint"},
+        withoutEmptyComparatorOption:true
         
       }),
     },
@@ -149,8 +159,10 @@ const columns = [
       text: "Habitual Arecanut(Years)",
       sort: true,
       filter: numberFilter({
-        placeholder: "Enter Year",
-    
+        placeholder: "Enter No. of Years",
+        comparators:["Select Constraint",Comparator.EQ,Comparator.NE, Comparator.GT,Comparator.LT,Comparator.GE,Comparator.LE,],
+        defaultValue :{Comparator:"Select Constraint"},
+        withoutEmptyComparatorOption:true
       }),
     },
     {
@@ -158,7 +170,10 @@ const columns = [
       text: "Habitual Smoker(Years)",
       sort: true,
       filter: numberFilter({
-        placeholder: "Enter Year",
+        placeholder: "Enter No. of Years",
+        comparators:["Select Constraint",Comparator.EQ,Comparator.NE, Comparator.GT,Comparator.LT,Comparator.GE,Comparator.LE,],
+        defaultValue :{Comparator:"Select Constraint"},
+        withoutEmptyComparatorOption:true
         
       }),
     },
@@ -167,7 +182,10 @@ const columns = [
       text: "Habitual Tobacco(Years)",
       sort: true,
       filter: numberFilter({
-        placeholder: "Enter Year",
+        placeholder: "Enter No. of Years",
+        comparators:["Select Constraint",Comparator.EQ,Comparator.NE, Comparator.GT,Comparator.LT,Comparator.GE,Comparator.LE,],
+        defaultValue :{Comparator:"Select Constraint"},
+        withoutEmptyComparatorOption:true
   
       }),
     },

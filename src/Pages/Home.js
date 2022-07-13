@@ -15,7 +15,7 @@ function Home() {
     cssEase: "linear",
   };
   return (
-    <div style={{overflow:"hidden"}}>
+    <div style={{ overflow: "hidden" }}>
       <Row style={{ marginLeft: "10%", width: "80%" }}>
         <Col className="text-center">
           <Carousel variant="dark">
@@ -54,14 +54,15 @@ function Home() {
                 className="text-center card-header"
                 style={{ color: "white", backgroundColor: "#1E90FF" }}
               >
-                MBDA
+                Mortality Based Data Analytics System
               </Card.Title>
               <Card.Text className="text-justify py-2">
-                The Mortality Based Data Analytics System has been created to
-                convert the on-paper death registration process into an online
-                process.MBDA helps in keeping track of the cause of deaths for
-                various deceased, and provides an efficient platform to analyze
-                this data based on different parameters.
+                The Mortality Based Data Analytics System(MBDAS) has been
+                created to convert the on-paper death registration process into
+                an online process(paperless). MBDAS helps in keeping track of
+                the cause of deaths for various deceased, and provides an
+                efficient platform to analyze this data based on different
+                parameters and helps in taking a timely action to contain a disease spread.
               </Card.Text>
             </Card.Body>
           </Card>
@@ -91,7 +92,7 @@ function Home() {
               <Card.Text className="text-justify py-2">
                 A timely analysis of some quickly spreading disease in a
                 community or globally can help in taking a suitable action to
-                contain/ prevent/ cure the disease.
+                contain the disease.
               </Card.Text>
             </Card.Body>
           </Card>
@@ -101,56 +102,72 @@ function Home() {
       <hr />
       <div style={{ marginBottom: "30px" }}>
         <Slider {...settings}>
-            <div><img
+          <div>
+            <img
               height="70px"
               className="p-2"
               src="./Assets/Images/Digital_India_logo.svg"
               alt="image1"
-            /></div>
-            
-            <div><img
+            />
+          </div>
+
+          <div>
+            <img
               height="70px"
               width="60px"
               className="p-2"
               src="./Assets/Images/Seal_of_Assam.svg"
               alt="image2"
-            /></div>
-            <div><img
+            />
+          </div>
+          <div>
+            <img
               height="70px"
               className="p-2"
               src="./Assets/Images/NIC_logo.svg"
               alt="image5"
-            /></div>
-            <div><img
+            />
+          </div>
+          <div>
+            <img
               height="70px"
               className="p-2"
               src="./Assets/Images/mygov.png"
               alt="image4"
-            /></div>
-            <div><img
+            />
+          </div>
+          <div>
+            <img
               height="70px"
               className="p-2"
               src="./Assets/Images/indiagovin.svg"
               alt="image5"
-            /></div>
-            <div><img
+            />
+          </div>
+          <div>
+            <img
               height="70px"
               className="p-2"
               src="./Assets/Images/C-DAC_LogoTransp.png"
               alt="image5"
-            /></div>
-            <div><img
+            />
+          </div>
+          <div>
+            <img
               height="70px"
               className="p-2"
               src="./Assets/Images/PMOindia.svg.png"
               alt="image5"
-            /></div>
-            <div><img
+            />
+          </div>
+          <div>
+            <img
               height="70px"
               className="p-2"
               src="./Assets/Images/PMNRF.png"
               alt="image3"
-            /></div>
+            />
+          </div>
         </Slider>
       </div>
     </div>

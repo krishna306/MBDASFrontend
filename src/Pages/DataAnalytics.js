@@ -208,7 +208,6 @@ function DataAnalytics() {
             <div className="random">
               <BootstrapTable
                 responsive
-                hover
                 keyField="_id"
                 data={data}
                 columns={TableModule.columns}

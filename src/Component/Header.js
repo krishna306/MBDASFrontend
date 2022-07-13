@@ -26,7 +26,7 @@ function Header() {
   }
   return (
     <>
-      <Navbar key="md" bg="light" expand="md" className="mb-3" sticky="top">
+      <Navbar  key="md" expand="md"  style ={{backgroundColor:"#E0FFFF"}} className="mb-3" sticky="top">
         <Container fluid>
           <Col sm={1}>
             <Row>
@@ -41,11 +41,11 @@ function Header() {
             </Row>
           </Col>
           <Col>
-            <Row>
+            {/* <Row>
               <Navbar.Brand href="/" style={{ color: "#007bff" }}>
                 <b>মৃত্যু ভিত্তিক তথ্য বিশ্লেষণ ব্যৱস্থা</b>
               </Navbar.Brand>
-            </Row>
+            </Row> */}
             <Row>
               <Navbar.Brand href="/" style={{ color: "#007bff" }}>
                 <b>MORTALITY BASED DATA ANALYTICS SYSTEM</b>
@@ -60,7 +60,7 @@ function Header() {
             placement="end"
           >
             <Offcanvas.Body>
-              <Nav variant="pills" className="justify-content-end  flex-grow-1 pe-3" >
+              <Nav variant="pills" style ={{}}  className="justify-content-end  flex-grow-1 pe-3" >
                 <Nav.Item>
                   <Nav.Link href ="/"eventKey="/" ><b style={{ fontSize: '20px' }}>Home</b></Nav.Link>
                 </Nav.Item>
@@ -72,7 +72,7 @@ function Header() {
                   {!user && <Nav.Link href="/login" eventKey="login"><b style={{ fontSize: '20px' }}>Login</b></Nav.Link>}
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link href="/form" eventKey="/form"><b style={{ fontSize: '20px' }}>Form</b></Nav.Link>
+                  {user && <Nav.Link href="/form" eventKey="/form"><b style={{ fontSize: '20px' }}>Form</b></Nav.Link>}
                 </Nav.Item>
                 <Nav.Item>
                   {user && user.role === "admin" && (
