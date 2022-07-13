@@ -66,18 +66,22 @@ function AdminDashboard() {
   const DisplayData = data.map((info) => {
     return (
       <tr key={info.email}>
-        <td>{info.firstname}</td>
-        <td>{info.lastname}</td>
-        <td>{info.email}</td>
-        <td>
-          <Button
-            id={info.email}
-            variant="danger"
-            onClick={() => deleteAdminUser(info.email)}
-          >
-            <Trash />
-          </Button>
-        </td>
+        {info.email !== user.email && (
+          <>
+            <td>{info.firstname}</td>
+            <td>{info.lastname}</td>
+            <td>{info.email}</td>
+            <td>
+              <Button
+                id={info.email}
+                variant="danger"
+                onClick={() => deleteAdminUser(info.email)}
+              >
+                <Trash /> Delete Admin
+              </Button>
+            </td>
+          </>
+        )}
       </tr>
     );
   });
@@ -112,8 +116,7 @@ function AdminDashboard() {
                 <Card border="light" style={{ width: "18rem" }}>
                   <LinkContainer to="/register">
                     <Button>
-                      <PersonPlusFill className="mb-1" />
-                      Add New Admin
+                      <PersonPlusFill className="mb-1" /> Add New Admin
                     </Button>
                   </LinkContainer>
                 </Card>
@@ -140,21 +143,19 @@ function AdminDashboard() {
           </Container>
         </div>
         <div>
-            <h4 className="mt-4" >List of All Admin</h4>
-            <Row style={{border:"2px solid blue"}} className="">
-            <Table striped bordered hover className="text-center" >
+          <h4 className="text-center text-decoration-underline" style={{marginTop:"40px"}}>List of All Admin</h4>
+          <Row  className="my-4">
+            <Table style={{borderWidth:"4px"}} bordered hover className="text-center">
               <thead>
                 <tr>
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Email Id</th>
-                  <th>Remove as Admin</th>
                 </tr>
               </thead>
               <tbody>{DisplayData}</tbody>
             </Table>
-            </Row>
-
+          </Row>
         </div>
       </Container>
     </div>

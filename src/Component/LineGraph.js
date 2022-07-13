@@ -31,7 +31,13 @@ function LineGraph(props) {
     plugins: {
       legend: {
         position: "top",
+        labels:{
+          font:{
+            size:14
+          }
+        },
       },
+     
       title: {
         display: false,
         text: "Year wise death toll of male female and other",

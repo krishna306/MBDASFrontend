@@ -23,6 +23,11 @@ function Graph(props) {
         font: {
           size: 20,
         },
+        labels:{
+          font:{
+            size:14
+          }
+        }
       },
       title: {
         display: false,

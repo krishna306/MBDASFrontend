@@ -28,6 +28,11 @@ function BarGraph(props) {
     plugins: {
       legend: {
         position: "top",
+        labels:{
+          font:{
+            size:14
+          }
+        },
       },
       title: {
         display: false,

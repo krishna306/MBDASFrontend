@@ -82,7 +82,7 @@ function Header() {
                 <Nav.Item>
 
                   {user && user.role === "admin" && (
-                    <Nav.Link href="/dataanalytics"><b style={{ fontSize: '20px' }}>Data analysis</b></Nav.Link>
+                    <Nav.Link href="/dataanalytics"><b style={{ fontSize: '20px' }}>Data Analysis</b></Nav.Link>
                   )}
                 </Nav.Item>
 
