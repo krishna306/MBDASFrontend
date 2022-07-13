@@ -23,11 +23,11 @@ function Graph(props) {
         font: {
           size: 20,
         },
-        labels:{
-          font:{
-            size:14
-          }
-        }
+        labels: {
+          font: {
+            size: 14,
+          },
+        },
       },
       title: {
         display: false,
@@ -36,12 +36,28 @@ function Graph(props) {
           size: 20,
         },
       },
-
     },
     scales: {
       y: {
-        beginAtZero: true
-      }
+        beginAtZero: true,
+        ticks: {
+          color: "black",
+          font: {
+            size: 14,
+            weight: "bold",
+          },
+         
+        },
+      },
+      x: {
+        ticks: {
+          color: "black",
+          font: {
+            size: 14,
+            weight:"bold",
+          },
+        },
+      },
     },
   };
   const data = {
@@ -65,8 +81,6 @@ function Graph(props) {
           "rgba(176,196,222,0.6)",
           "rgba(123,104,238,0.6)",
           "rgba(255, 99, 132, 0.4)",
-
-
 
           "rgba(85,69,69,0.6)",
           "rgba(132,128,13,0.6)",
@@ -138,7 +152,7 @@ function Graph(props) {
     <div style={{ borderRadius: "10px" }} className="p-4 ml-2">
       <Row>
         <Col sm={7}>
-          <h6 style={{ whiteSpace: "no-wrap" }}>{title}</h6>
+          <h5 style={{ whiteSpace: "no-wrap" }}>{title}</h5>
         </Col>
         <Col sm={5}>
           <Form.Select

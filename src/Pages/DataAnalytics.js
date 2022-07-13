@@ -191,7 +191,7 @@ function DataAnalytics() {
     <Container fluid style={{ overflow: "hidden" }}>
       <Row className="mx-4">
        <Col className="mt-2">
-       <h3 className="text-decoration-underline">Data Analysis</h3>
+       <h3 className="text-decoration-underline">Enter data field values to perform Data Analysis</h3>
        </Col>
         <Col className="d-flex justify-content-end mt-1 mr-4">
         

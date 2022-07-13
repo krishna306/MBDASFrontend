@@ -42,7 +42,7 @@ import filterFactory, {
 const columns = [
     {
       dataField: "date",
-      text: "Date of Death",
+      text: "Year of Death (YYYY-MM-DD)",
       sort: true,
       filter: textFilter({
         placeholder: "Enter Date",

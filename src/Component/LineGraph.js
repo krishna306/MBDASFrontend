@@ -48,9 +48,26 @@ function LineGraph(props) {
       },
     },
     scales:{
-      y:{
-        beginAtZero:true
-      }
+      y: {
+        beginAtZero: true,
+        ticks: {
+          color: "black",
+          font: {
+            size: 14,
+            weight: "bold",
+          },
+         
+        },
+      },
+      x: {
+        ticks: {
+          color: "black",
+          font: {
+            size: 14,
+            weight:"bold",
+          },
+        },
+      },
     },
   };
   const Statistics1 = [];
@@ -100,7 +117,7 @@ function LineGraph(props) {
     >
       <Row>
         <Col sm={8}>
-          <h6 style={{ whiteSpace: "no-wrap" }}>{title}</h6>
+          <h5 style={{ whiteSpace: "no-wrap" }}>{title}</h5>
         </Col>
         <Col sm={4}>
           <Form.Select
