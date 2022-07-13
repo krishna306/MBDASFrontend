@@ -25,7 +25,7 @@ import PageNotFound from "./PageNotFound";
 function AdminDashboard() {
   const { user } = useSelector((state) => state.user);
   const { data, isLoading, isError } = useGetAllAdminQuery();
-  const [deleteAdmin, { }] = useDeleteAdminUserMutation();
+  const [deleteAdmin] = useDeleteAdminUserMutation();
   if (!user) {
     return <PageNotFound />;
   }

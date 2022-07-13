@@ -189,40 +189,44 @@ function DataAnalytics() {
   }
   return (
     <Container fluid style={{ overflow: "hidden" }}>
-      <Row className="d-flex justify-content-between">
-        <Button
-          className="pull-right ml-2"
-          name="click-me"
-          style={{ width: "200px" }}
-          onClick={handleClick}
-        >
-          {" "}
-          Load Data to Graph
-        </Button>
-      </Row>
-      <Row>
-        <Col className="py-2">
-          <div className="random">
-            <BootstrapTable
-              responsive
-              hover
-              keyField="_id"
-              data={data}
-              columns={TableModule.columns}
-              pagination={paginationFactory(TableModule.options)}
-              filter={filterFactory()}
-              filterPosition="top"
-              filtersClasses="text-center"
-              headerClasses="text-center "
-              bodyClasses="text-center "
-              ref={(res) => {
-                node = res;
-              }}
-            />
-          </div>
+      <Row className="mx-4">
+       <Col className="mt-2">
+       <h3 className="text-decoration-underline">Data Analysis</h3>
+       </Col>
+        <Col className="d-flex justify-content-end mt-1 mr-4">
+        
+          <Button
+            name="click-me"
+            style={{ width: "200px"}}
+            onClick={handleClick}
+          >
+            Load Data to Graph
+          </Button>
         </Col>
+        <Row>
+          <Col className="py-2">
+            <div className="random">
+              <BootstrapTable
+                responsive
+                hover
+                keyField="_id"
+                data={data}
+                columns={TableModule.columns}
+                pagination={paginationFactory(TableModule.options)}
+                filter={filterFactory()}
+                filterPosition="top"
+                filtersClasses="text-center"
+                headerClasses="text-center "
+                bodyClasses="text-center "
+                ref={(res) => {
+                  node = res;
+                }}
+              />
+            </div>
+          </Col>
+        </Row>
       </Row>
-      <b> </b>
+      
       {dataLoaded && (
         <>
           <hr style={{ height: "2px", color: "black" }} />
@@ -245,9 +249,7 @@ function DataAnalytics() {
                 />
               </Col>
               <Col className="mb-2">
-                <Graph
-                  data={{ data: diseaseData, title: "Cause of Death" }}
-                />
+                <Graph data={{ data: diseaseData, title: "Cause of Death" }} />
               </Col>
             </Row>
 

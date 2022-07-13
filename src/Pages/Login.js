@@ -17,9 +17,8 @@ function Login() {
   const [result, setResult] = useState("");
   const { user } = useSelector((state) => state.user);
   //navigate function
-  const [loginUser, { isLoading, data }] = useLoginUserMutation();
-  const [loginOtpUser, {isLoading:isLoadinOtp,data:otpUserdata}] = useLoginOtpUserMutation();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginUser, { isLoading }] = useLoginUserMutation();
+  const [loginOtpUser] = useLoginOtpUserMutation();
   const [inputField, setInputFiled] = useState({
     email: "",
     password: "",
@@ -49,7 +48,7 @@ function Login() {
               navigate("/");
             }
           }, 2000);
-          setIsLoggedIn(true);
+          
         }
       } catch (error) {
         console.log(error);
@@ -73,8 +72,15 @@ function Login() {
           toast.error(res.error.data);
         }
         else {
+          toast.success("Logged In...");
           setTimeout(()=> {
-            navigate("/");
+            if(res.data.user.role ==="admin"){
+              navigate("/adminDashboard");
+            }
+            else {
+              navigate("/");
+            }
+            
           },1000)
         }
       } catch (error) {
@@ -91,7 +97,6 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(obj.emailMobile);
       const response = await setUpRecaptha(obj.emailMobile);
       setResult(response);
       toast.success("OTP sent Successfully");
@@ -111,8 +116,7 @@ function Login() {
     );
     recaptchaVerifier.render();
     return signInWithPhoneNumber(auth, number, recaptchaVerifier);
-  }
-
+    }
   //google recaptcha
   function onChange(value) {
     setCaptchaValue(value);

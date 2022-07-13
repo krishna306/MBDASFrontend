@@ -191,7 +191,6 @@ export default function DeceasedForm() {
         setSubmittingFromData(true);
         const res = await createDeceased(deceasedField);
         setSubmittingFromData(false);
-        console.log(res);
         if (res.error && res.error.data.code === 11000) {
           if (res.error.data.keyPattern.aadhar === 1) {
             toast.error("Record of Deceased already there");

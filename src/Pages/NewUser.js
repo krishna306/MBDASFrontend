@@ -44,7 +44,6 @@ function NewUser() {
       inputField.role = "admin";
     }
     const res = await signup(inputField);
-    console.log(res);
     if (res.error && res.error.data.code === 11000) {
       toast.error(`${res.error.data.keyValue.email} already used`);
     } else if (res.error && res.error.status === 400) {
@@ -68,7 +67,6 @@ function NewUser() {
 
   function onChange(value) {
     setCaptchaValue(value);
-    console.log("Captcha value:", value);
   }
 
   const handleClickp = () => {
@@ -78,7 +76,6 @@ function NewUser() {
     setVisibilitycp((prevValue) => !prevValue);
   };
 
-  console.log(inputField);
   return (
     <div>
       <ToastContainer />
