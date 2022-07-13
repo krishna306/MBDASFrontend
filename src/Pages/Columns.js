@@ -91,7 +91,7 @@ const columns = [
 
       }),
       headerStyle: () => {
-        return { paddingLeft: "10px", paddingRight: "10px" };
+        return { paddingLeft: "30px", paddingRight: "30px" };
       },
     },
     {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useSignupUserMutation } from "../services/appApi";
@@ -23,6 +23,18 @@ function NewUser() {
     password: "",
     cpassword: "",
   });
+  const [inputErrors, setinputErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
+  useEffect(() => {
+    console.log(inputErrors);
+    if (Object.keys(inputErrors).length === 0 && isSubmit) {
+      console.log(inputField);
+    }
+  }, [inputField, inputErrors, isSubmit]);
+
+
+  // Error for form new user fields
+
   const inputHandler = (e) => {
     e.preventDefault();
     setValidated(true);
@@ -33,36 +45,113 @@ function NewUser() {
   }
   const handleSignup = async (e) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    setValidated(true);
+
+    setIsSubmit(true);
 
     if (user && user.role === "admin") {
       inputField.role = "admin";
     }
-    const res = await signup(inputField);
-    if (res.error && res.error.data.code === 11000) {
-      toast.error(`${res.error.data.keyValue.email} already used`);
-    } else if (res.error && res.error.status === 400) {
-      toast.error("Some error Occurred");
-    } else {
-      if (user && user.role === "admin") {
-        toast.success("New admin successfully Created..");
-        setTimeout(() => {
-          navigate("/adminDashboard");
-          window.location.reload();
-        }, 2000);
+    setinputErrors(validateInput(inputField));
+    const obj = validateInput(inputField);
+
+    if (Object.keys(obj).length === 0) {
+      const res = await signup(inputField);
+      if (res.error && res.error.data.code === 11000) {
+        toast.error(`${res.error.data.keyValue.email} already used`);
+      } else if (res.error && res.error.status === 400) {
+        toast.error("Some error Occurred");
       } else {
-        setTimeout(() => {
-          navigate("/login");
-          window.location.reload();
-        }, 1000);
-        toast.success("Registered Successfully");
+        if (user && user.role === "admin") {
+          toast.success("New admin successfully Created..");
+          setTimeout(() => {
+            navigate("/adminDashboard");
+            window.location.reload();
+          }, 2000);
+        } else {
+          setTimeout(() => {
+            navigate("/login");
+            window.location.reload();
+          }, 1000);
+          toast.success("Registered Successfully");
+        }
+      }
+    } else if (obj.notMatch) {
+      alert(obj.notMatch);
+    } else {
+      alert("Something is wrong in form details, please look!");
+    }
+  };
+
+  const validateInput = (values) => {
+    const error = {};
+    const regexMobile = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/;
+    const regexEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+
+    if (
+      !values.firstname ||
+      values.firstname === "" ||
+      values.firstname.length === 0
+    ) {
+      error.firstname = "First name is required!";
+    }
+
+    if (
+      !values.lastname ||
+      values.lastname === "" ||
+      values.lastname.length === 0
+    ) {
+      error.lastname = "Last name is required!";
+    }
+
+    if (values.mobile || values.mobile !== "" || values.mobile.length !== 0) {
+      if (!regexMobile.test(values.mobile)) {
+        error.mobile = "Invalid mobile number format!";
+      }
+    } else {
+      error.mobile = "Mobile number is required!";
+    }
+
+    if (values.email || values.email !== "" || values.email.length !== 0) {
+      if (!regexEmail.test(values.email)) {
+        error.email = "Invalid email format!";
+      }
+    } else {
+      error.email = "Email is required!";
+    }
+
+    if (
+      values.password ||
+      values.password !== "" ||
+      values.password.length !== 0
+    ) {
+      if (values.password.length < 4 || values.password.length > 12) {
+        error.password =
+          "Password length should be between 4 to 12 characters long!";
+      }
+    } else {
+      error.password = "Password field is required!";
+    }
+
+    if (
+      values.cpassword ||
+      values.cpassword !== "" ||
+      values.cpassword.length !== 0
+    ) {
+      if (values.cpassword.length < 4 || values.cpassword.length > 12) {
+        error.cpassword =
+          "Password length should be between 4 to 12 characters long!";
+      }
+    } else {
+      error.cpassword = "Confirm password field is required!";
+    }
+
+    if (!error.password && !error.cpassword) {
+      if (values.password !== values.cpassword) {
+        error.notMatch = "Password and confirm password field should match!";
       }
     }
+
+    return error;
   };
 
   function onChange(value) {
@@ -92,7 +181,7 @@ function NewUser() {
               backgroundColor: "#F9F9F9",
             }}
           >
-            <Form noValidate validated={validated} onSubmit={handleSignup}>
+            <Form  onSubmit={handleSignup}>
               <h3
                 style={{
                   textAlign: "center",
@@ -100,15 +189,17 @@ function NewUser() {
                   marginBottom: "15px",
                 }}
               >
-
-              {(user && user.role === "admin") ? ("Add New Admin"):("Sign Up")}
+                {user && user.role === "admin" ? "Add New Admin" : "Sign Up"}
               </h3>
 
               <div>
                 <Container fluid>
                   <Row>
                     <Col>
-                      <Form.Label>First Name<span style={{ color: "rgb(255, 8, 8)" }}>*</span></Form.Label>
+                      <Form.Label>
+                        First Name
+                        <span style={{ color: "rgb(255, 8, 8)" }}>*</span>
+                      </Form.Label>
                     </Col>
                     <Col>
                       <Form.Label>Last Name</Form.Label>
@@ -123,12 +214,9 @@ function NewUser() {
                           placeholder="Enter First Name"
                           name="firstname"
                           value={inputField.firstname}
-                          required
                           onChange={inputHandler}
                         />
-                        <Form.Control.Feedback type="invalid">
-                          First Name is required!
-                        </Form.Control.Feedback>
+                    <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.firstname}</span>
                       </Form.Group>
                     </Col>
                     <Col>
@@ -140,12 +228,15 @@ function NewUser() {
                           value={inputField.lastname}
                           onChange={inputHandler}
                         />
+                         <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.lastname}</span>
                       </Form.Group>
                     </Col>
                   </Row>
 
                   <Row>
-                    <Form.Label>Email<span style={{ color: "rgb(255, 8, 8)" }}>*</span></Form.Label>
+                    <Form.Label>
+                      Email<span style={{ color: "rgb(255, 8, 8)" }}>*</span>
+                    </Form.Label>
                   </Row>
                   <Row>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -154,19 +245,19 @@ function NewUser() {
                         placeholder="Enter Email"
                         name="email"
                         value={inputField.email}
-                        required
                         onInput={(e) =>
                           (e.target.value = ("" + e.target.value).toLowerCase())
                         }
                         onChange={inputHandler}
                       />
-                      <Form.Control.Feedback type="invalid">
-                        Email is required!
-                      </Form.Control.Feedback>
+                   <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.email}</span>
                     </Form.Group>
                   </Row>
                   <Row>
-                    <Form.Label>Mobile Number<span style={{ color: "rgb(255, 8, 8)" }}>*</span></Form.Label>
+                    <Form.Label>
+                      Mobile Number
+                      <span style={{ color: "rgb(255, 8, 8)" }}>*</span>
+                    </Form.Label>
                   </Row>
                   <Row>
                     <Form.Group className="mb-3" controlId="formBasicText">
@@ -176,19 +267,19 @@ function NewUser() {
                         name="mobile"
                         maxLength="10"
                         value={inputField.mobile}
-                        required
                         onChange={inputHandler}
                       />
-                      <spam
+                      <p
                         style={{
                           paddingTop: "10px",
-                          fontSize: "0.7rem",
+                          fontSize: "0.8rem",
                           color: "blue",
                         }}
                       >
                         Please provide valid mobile number required to reset
                         password
-                      </spam>
+                      </p>
+                      <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.mobile}</span>
                     </Form.Group>
 
                     <Form.Control.Feedback type="invalid">
@@ -196,7 +287,9 @@ function NewUser() {
                     </Form.Control.Feedback>
                   </Row>
                   <Row>
-                    <Form.Label>Password<span style={{ color: "rgb(255, 8, 8)" }}>*</span></Form.Label>
+                    <Form.Label>
+                      Password<span style={{ color: "rgb(255, 8, 8)" }}>*</span>
+                    </Form.Label>
                   </Row>
                   <Row>
                     <Form.Group
@@ -208,13 +301,10 @@ function NewUser() {
                         type={visibilityp ? "text" : "password"}
                         placeholder="Enter Password"
                         name="password"
-                        required
                         value={inputField.password}
                         onChange={inputHandler}
                       />
-                      <Form.Control.Feedback type="invalid">
-                        Password is required!
-                      </Form.Control.Feedback>
+                      
                       <div>
                         <Button
                           style={{
@@ -230,10 +320,14 @@ function NewUser() {
                           {visibilityp ? <VscEyeClosed /> : <VscEye />}
                         </Button>
                       </div>
+                      <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.password}</span>
                     </Form.Group>
                   </Row>
                   <Row>
-                    <Form.Label>Confirm Password<span style={{ color: "rgb(255, 8, 8)" }}>*</span></Form.Label>
+                    <Form.Label>
+                      Confirm Password
+                      <span style={{ color: "rgb(255, 8, 8)" }}>*</span>
+                    </Form.Label>
                   </Row>
                   <Row>
                     <Form.Group
@@ -246,12 +340,9 @@ function NewUser() {
                         placeholder="Confirm Password"
                         name="cpassword"
                         value={inputField.cpassword}
-                        required
                         onChange={inputHandler}
                       />
-                      <Form.Control.Feedback type="invalid">
-                        Confirm Password is required!
-                      </Form.Control.Feedback>
+                    
                       <div>
                         <Button
                           style={{
@@ -267,6 +358,7 @@ function NewUser() {
                           {visibilitycp ? <VscEyeClosed /> : <VscEye />}
                         </Button>
                       </div>
+                      <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.cpassword}</span>
                     </Form.Group>
                   </Row>
                 </Container>
@@ -284,7 +376,10 @@ function NewUser() {
                   type="submit"
                   disabled={captchaValue === null}
                 >
-                 {isLoading && <Spinner animation="border" variant="light"  size="sm"/>} Register
+                  {isLoading && (
+                    <Spinner animation="border" variant="light" size="sm" />
+                  )}{" "}
+                  Register
                 </Button>
               </div>
               <p style={{ textAlign: "right" }}>

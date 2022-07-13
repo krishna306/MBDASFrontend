@@ -72,7 +72,7 @@ function Home() {
                 className="text-center card-header"
                 style={{ color: "white", backgroundColor: "#1E90FF" }}
               >
-                Data Collection
+                Data Entry Format
               </Card.Title>
               <Card.Text className="text-justify py-2">
                 The format chosen for reporting the death of a person has been

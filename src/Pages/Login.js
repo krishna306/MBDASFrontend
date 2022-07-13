@@ -247,7 +247,7 @@ function Login() {
               <Form.Group className="mb-3 mt-4">
                 <Form.Control
                   type="email"
-                  placeholder="Email/Mobile"
+                  placeholder="Email"
                   name="email"
                   value={inputField.email}
                   onChange={inputHandler}
