@@ -26,7 +26,6 @@ function NewUser() {
   const [inputErrors, setinputErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   useEffect(() => {
-    console.log(inputErrors);
     if (Object.keys(inputErrors).length === 0 && isSubmit) {
       console.log(inputField);
     }
@@ -269,7 +268,7 @@ function NewUser() {
                         value={inputField.mobile}
                         onChange={inputHandler}
                       />
-                      <p
+                      <h6
                         style={{
                           paddingTop: "10px",
                           fontSize: "0.8rem",
@@ -278,13 +277,9 @@ function NewUser() {
                       >
                         Please provide valid mobile number required to reset
                         password
-                      </p>
+                      </h6>
                       <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.mobile}</span>
                     </Form.Group>
-
-                    <Form.Control.Feedback type="invalid">
-                      Mobile is required!
-                    </Form.Control.Feedback>
                   </Row>
                   <Row>
                     <Form.Label>
@@ -310,7 +305,7 @@ function NewUser() {
                           style={{
                             position: "absolute",
                             right: "14px",
-                            bottom: "1px",
+                            bottom: inputErrors.password ? "25px" : "1px",
                             backgroundColor: "white",
                             color: "black",
                             border: "none",
@@ -342,13 +337,13 @@ function NewUser() {
                         value={inputField.cpassword}
                         onChange={inputHandler}
                       />
-                    
+                      <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.cpassword}</span>
                       <div>
                         <Button
                           style={{
                             position: "absolute",
                             right: "14px",
-                            bottom: "1px",
+                            bottom: inputErrors.cpassword ? "25px" : "1px",
                             backgroundColor: "white",
                             color: "black",
                             border: "none",
@@ -358,7 +353,7 @@ function NewUser() {
                           {visibilitycp ? <VscEyeClosed /> : <VscEye />}
                         </Button>
                       </div>
-                      <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.cpassword}</span>
+                    
                     </Form.Group>
                   </Row>
                 </Container>
