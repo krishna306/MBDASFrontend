@@ -143,7 +143,7 @@ function NewUser() {
         error.cpassword = "Password length should be greater than 14!";
       } else if (!strongRegex.test(values.cpassword)) {
         error.cpassword =
-          "Password must contain atleast 1 lowercase 1 uppercase 1 numeric and one special character from [!@#$%^&*]";
+          "Password must contain atleast 1 uppercase 1 numeric and 1 special character from [!@#$%^&*]";
       }
     } else {
       error.cpassword = "Confirm password field is required!";
