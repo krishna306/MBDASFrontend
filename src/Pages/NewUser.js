@@ -123,7 +123,7 @@ function NewUser() {
       values.password.length !== 0
     ) {
       if (values.password.length < 8) {
-        error.password = "Password length should be greater than 14!";
+        error.password = "Password length should be greater than 8!";
       } else if (!strongRegex.test(values.password)) {
         error.password =
           "Password must contain atleast 1 uppercase 1 numeric and 1 special character from [!@#$%^&*]";
@@ -138,7 +138,7 @@ function NewUser() {
       values.cpassword.length !== 0
     ) {
       if (values.cpassword.length < 8) {
-        error.cpassword = "Password length should be greater than 14!";
+        error.cpassword = "Password length should be greater than 8!";
       } else if (!strongRegex.test(values.cpassword)) {
         error.cpassword =
           "Password must contain atleast 1 uppercase 1 numeric and 1 special character from [!@#$%^&*]";
