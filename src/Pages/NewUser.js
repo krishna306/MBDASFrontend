@@ -31,7 +31,6 @@ function NewUser() {
     }
   }, [inputField, inputErrors, isSubmit]);
 
-
   // Error for form new user fields
 
   const inputHandler = (e) => {
@@ -85,7 +84,9 @@ function NewUser() {
     const error = {};
     const regexMobile = /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/;
     const regexEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-
+    var strongRegex = new RegExp(
+      "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
+    );
     if (
       !values.firstname ||
       values.firstname === "" ||
@@ -123,9 +124,11 @@ function NewUser() {
       values.password !== "" ||
       values.password.length !== 0
     ) {
-      if (values.password.length < 4 || values.password.length > 12) {
+      if (values.password.length < 8) {
+        error.password = "Password length should be greater than 14!";
+      } else if (!strongRegex.test(values.password)) {
         error.password =
-          "Password length should be between 4 to 12 characters long!";
+          "Password must contain atleast 1 uppercase 1 numeric and 1 special character from [!@#$%^&*]";
       }
     } else {
       error.password = "Password field is required!";
@@ -136,9 +139,11 @@ function NewUser() {
       values.cpassword !== "" ||
       values.cpassword.length !== 0
     ) {
-      if (values.cpassword.length < 4 || values.cpassword.length > 12) {
+      if (values.cpassword.length < 8) {
+        error.cpassword = "Password length should be greater than 14!";
+      } else if (!strongRegex.test(values.cpassword)) {
         error.cpassword =
-          "Password length should be between 4 to 12 characters long!";
+          "Password must contain atleast 1 lowercase 1 uppercase 1 numeric and one special character from [!@#$%^&*]";
       }
     } else {
       error.cpassword = "Confirm password field is required!";
@@ -180,7 +185,7 @@ function NewUser() {
               backgroundColor: "#F9F9F9",
             }}
           >
-            <Form  onSubmit={handleSignup}>
+            <Form onSubmit={handleSignup}>
               <h3
                 style={{
                   textAlign: "center",
@@ -215,7 +220,9 @@ function NewUser() {
                           value={inputField.firstname}
                           onChange={inputHandler}
                         />
-                    <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.firstname}</span>
+                        <span style={{ color: "red", fontSize: "0.8rem" }}>
+                          {inputErrors.firstname}
+                        </span>
                       </Form.Group>
                     </Col>
                     <Col>
@@ -227,7 +234,9 @@ function NewUser() {
                           value={inputField.lastname}
                           onChange={inputHandler}
                         />
-                         <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.lastname}</span>
+                        <span style={{ color: "red", fontSize: "0.8rem" }}>
+                          {inputErrors.lastname}
+                        </span>
                       </Form.Group>
                     </Col>
                   </Row>
@@ -249,7 +258,9 @@ function NewUser() {
                         }
                         onChange={inputHandler}
                       />
-                   <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.email}</span>
+                      <span style={{ color: "red", fontSize: "0.8rem" }}>
+                        {inputErrors.email}
+                      </span>
                     </Form.Group>
                   </Row>
                   <Row>
@@ -278,7 +289,9 @@ function NewUser() {
                         Please provide valid mobile number required to reset
                         password
                       </h6>
-                      <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.mobile}</span>
+                      <span style={{ color: "red", fontSize: "0.8rem" }}>
+                        {inputErrors.mobile}
+                      </span>
                     </Form.Group>
                   </Row>
                   <Row>
@@ -299,7 +312,7 @@ function NewUser() {
                         value={inputField.password}
                         onChange={inputHandler}
                       />
-                      
+
                       <div>
                         <Button
                           style={{
@@ -315,7 +328,9 @@ function NewUser() {
                           {visibilityp ? <VscEyeClosed /> : <VscEye />}
                         </Button>
                       </div>
-                      <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.password}</span>
+                      <span style={{ color: "red", fontSize: "0.8rem" }}>
+                        {inputErrors.password}
+                      </span>
                     </Form.Group>
                   </Row>
                   <Row>
@@ -337,7 +352,9 @@ function NewUser() {
                         value={inputField.cpassword}
                         onChange={inputHandler}
                       />
-                      <span style={{ color: "red", fontSize: "0.8rem" }}>{inputErrors.cpassword}</span>
+                      <span style={{ color: "red", fontSize: "0.8rem" }}>
+                        {inputErrors.cpassword}
+                      </span>
                       <div>
                         <Button
                           style={{
@@ -353,7 +370,6 @@ function NewUser() {
                           {visibilitycp ? <VscEyeClosed /> : <VscEye />}
                         </Button>
                       </div>
-                    
                     </Form.Group>
                   </Row>
                 </Container>
