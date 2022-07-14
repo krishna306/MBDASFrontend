@@ -266,7 +266,7 @@ function Login() {
                   <Button style={{
                       position: "absolute", 
                       right: "10px", 
-                      bottom: "1px", 
+                      bottom: "2px", 
                       backgroundColor: "white", 
                       color: "black", 
                       border: "none"
