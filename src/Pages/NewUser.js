@@ -43,9 +43,7 @@ function NewUser() {
   }
   const handleSignup = async (e) => {
     e.preventDefault();
-
     setIsSubmit(true);
-
     if (user && user.role === "admin") {
       inputField.role = "admin";
     }
