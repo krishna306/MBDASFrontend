@@ -1632,7 +1632,6 @@ export default function DeceasedForm() {
                 <Col xs={6}>
                   <Form.Select name="state" onChange={handleApplicantInput}>
                     <option value="null">SELECT STATE</option>
-                    <option>Select State</option>
                     <option value="andaman and nicobar islands">
                       {" "}
                       ANDAMAN AND NICOBAR ISLANDS
@@ -2126,7 +2125,7 @@ export default function DeceasedForm() {
                     name="deceasedstate"
                     onChange={handleDeceasedInput}
                   >
-                    <option>Select State</option>
+                    <option>SELECT STATE</option>
                     <option value="andaman and nicobar islands">
                       {" "}
                       ANDAMAN AND NICOBAR ISLANDS
