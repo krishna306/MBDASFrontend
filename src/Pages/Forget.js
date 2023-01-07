@@ -79,7 +79,7 @@ function Forget() {
     if (Object.keys(obj).length === 0) {
       try {
         // Axios.post("http://localhost:8000/users/forgotpassword", {
-          Axios.post("https://mbdas.herokuapp.com/users/forgotpassword", {
+          Axios.post("https://mbdas.vercel.app/users/forgotpassword", {
            mobile: user.EmailMobile.slice(3),
            password: user.NewPassword,
          })
